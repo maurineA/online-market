@@ -1,3 +1,4 @@
+
 import os
 from flask import Flask, jsonify, make_response
 from flask_migrate import Migrate
@@ -62,3 +63,4 @@ def get_shop(id):
 
 if __name__ == "__main__":
     app.run(debug=True,port=5555)
+
