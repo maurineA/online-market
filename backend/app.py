@@ -3,7 +3,7 @@ import os
 from flask import Flask, jsonify, make_response
 from flask_migrate import Migrate
 from flask_cors import CORS
-from models import db, Shop
+from models import db, Shop,Product
 
 
 app = Flask(__name__)
@@ -56,7 +56,26 @@ def get_shop(id):
     else:
         response = {"error": "id not found"}
         return jsonify(response), 404
-
+@app.route("/products",methods=["GET"])
+def products():
+    products = Product.query.all()
+    product_list = []
+    for product in products:
+        product_dict={
+            "id":product.id,
+            "name":product.name,
+            "description":product.description,
+            "quantity":product.quantity,
+            "image":product.image
+        }
+    
+        product_list.append(product_dict)
+    response = make_response(jsonify(product_list),200)
+    return response
+   
+    
+        
+    
 
 
 
