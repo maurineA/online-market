@@ -38,7 +38,7 @@ def get_shops():
 
     return response
 
-@app.route("/shop/<int:id>", methods=["GET"])
+@app.route("/shops/<int:id>", methods=["GET"])
 def get_shop(id):
     shop = Shop.query.get(id)
     if shop:
