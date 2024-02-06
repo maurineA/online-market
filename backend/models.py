@@ -15,8 +15,8 @@ class Shop(db.Model):
 class Shopproduct(db.Model):
     __tablename__ ="shopproducts"
     id =  db.Column(db.Integer, primary_key=True)
-    shop_id = db.Column(db.Integer, db.foreignKey("shops.id"))
-    product_id = db.Column(db.Integer, db.foreignKey("products.id"))
+    shop_id = db.Column(db.Integer, db.ForeignKey("shops.id"))
+    product_id = db.Column(db.Integer, db.ForeignKey("products.id"))
     price = db.Column(db.Integer)
 
 
