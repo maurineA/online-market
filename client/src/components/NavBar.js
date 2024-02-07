@@ -7,6 +7,7 @@ function NavBar() {
     <div>
        <NavLink to="/home"style={{marginRight:"20px"}}>Home</NavLink>
       <NavLink to="/shops" style={{marginRight:"20px"}}>Shops</NavLink>
+      <NavLink to="/newShop" style={{marginRight:"20px"}}>newshop</NavLink>
       </div>
         
         
