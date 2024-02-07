@@ -3,7 +3,7 @@ import os
 from flask import Flask, jsonify, make_response
 from flask_migrate import Migrate
 from flask_cors import CORS
-from models import db, Shop,Product
+from models import db, Shop, Product
 
 
 app = Flask(__name__)
@@ -38,9 +38,9 @@ def get_shops():
 
     return response
 
-@app.route("/shops/<int:id>", methods=["GET"])
+@app.route("/shop/<int:id>", methods=["GET"])
 def get_shop(id):
-    shop = Shop.query.get(id)
+    shop = Shop.query.all(id)
     if shop:
         shop_dict={
             "id": shop.id,
@@ -56,30 +56,49 @@ def get_shop(id):
     else:
         response = {"error": "id not found"}
         return jsonify(response), 404
-@app.route("/products",methods=["GET"])
-def products():
+    
+
+@app.route("/products", methods=["GET"])
+def get_products():
     products = Product.query.all()
-    product_list = []
+    productlist = []
     for product in products:
         product_dict={
-            "id":product.id,
-            "name":product.name,
-            "description":product.description,
-            "quantity":product.quantity,
-            "image":product.image
+            "id": product.id,
+            "name": product.name,
+            "description": product.description,
+            "quantity": product.quantity,
+            "image": product.image,
+
         }
-    
-        product_list.append(product_dict)
-    response = make_response(jsonify(product_list),200)
+
+        productlist.append(product_dict)
+    response = make_response(jsonify(productlist), 200)
+
     return response
-   
-    
-        
     
 
 
+
+@app.route("/product/<int:id>", methods=["GET"])
+def get_product(id):
+    product = Product.query.get(id)
+    if product:
+        product_dict={
+            "id": product.id,
+            "name": product.name,
+            "description": product.description,
+            "quantity": product.quantity,
+            "image": product.image,
+
+        }
+        response = make_response(jsonify(product_dict), 200)
+
+        return response
+    else:
+        response = {"error": "id not found"}
+        return jsonify(response), 404
 
 
 if __name__ == "__main__":
     app.run(debug=True,port=5555)
-
