@@ -5,7 +5,7 @@ def seed_data():
     with app.app_context():
 
         # Create shops
-        shop1 = Shop(username='shop_owner1', shopname='Shop 1', address='123 Main St', contact='1234567890')
+        shop1 = Shop(username='John Doe', shopname='Ever Green', address='123 Main St', contact='1234567890')
         shop2 = Shop(username='shop_owner2', shopname='Shop 2', address='456 Elm St', contact='0987654321')
         shop3 = Shop(username='shop_owner3', shopname='Shop 3', address='789 Oak St', contact='9876543210')
         shop4 = Shop(username='shop_owner4', shopname='Shop 4', address='101 Maple St', contact='5551234567')
@@ -17,7 +17,7 @@ def seed_data():
         shop10 = Shop(username='shop_owner10', shopname='Shop 10', address='369 Elm St', contact='4445556666')
         
         # Create products
-        product1 = Product(name='Product 1', description='Description of Product 1', quantity='10', image='product1.jpg')
+        product1 = Product(name='Eggs', description='Big eggs sold in small tray of', quantity='6', image='https://images.pexels.com/photos/2985167/pexels-photo-2985167.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')
         product2 = Product(name='Product 2', description='Description of Product 2', quantity='20', image='product2.jpg')
         product3 = Product(name='Product 3', description='Description of Product 3', quantity='15', image='product3.jpg')
         product4 = Product(name='Product 4', description='Description of Product 4', quantity='25', image='product4.jpg')
@@ -39,7 +39,7 @@ def seed_data():
         db.session.commit()
 
         # Create relationships between shops and products
-        shop_product1 = Shopproduct(shop_id=shop1.id, product_id=product1.id, price=100)
+        shop_product1 = Shopproduct(shop_id=shop1.id, product_id=product1.id, price=200)
         shop_product2 = Shopproduct(shop_id=shop2.id, product_id=product2.id, price=200)
         shop_product3 = Shopproduct(shop_id=shop3.id, product_id=product3.id, price=150)
         shop_product4 = Shopproduct(shop_id=shop3.id, product_id=product4.id, price=250)
