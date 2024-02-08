@@ -19,9 +19,10 @@ function  handleclick(){
         <h1>Welcome to the Online Market</h1>
         <p>Discover the convenience of shopping online and explore a variety of shops from the comfort of your home.</p>
         <p>If you're a shop owner, join our marketplace and reach a wider audience by creating your own shop!</p>
-        <button onClick={handleclick()}>Create Your Shop</button>
+        <button onClick={handleclick()}>sign up your shop</button>
       </div>
     </div>
+
   );
 }
 
