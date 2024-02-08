@@ -1,18 +1,8 @@
-
-import os
-from flask import Flask, jsonify, make_response, request
-from flask_migrate import Migrate
-from flask_cors import CORS
-from models import db, Shop, Product
+from flask import jsonify, make_response, request
+from models import Shop, Product
+from config import app, db
 
 
-app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///market.db"
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
-migrate = Migrate(app,db)
-CORS(app)
-db.init_app(app)
 
 @app.route("/")
 def home():

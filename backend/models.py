@@ -1,7 +1,9 @@
-from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.orm import validates
 
-db = SQLAlchemy()
+from sqlalchemy.orm import validates
+from sqlalchemy.ext.hybrid import hybrid_property
+from config import bcrypt,db
+
+
 
 class Shop(db.Model):
     __tablename__ = "shops"
@@ -10,7 +12,7 @@ class Shop(db.Model):
     shopname = db.Column(db.String)
     address = db.Column(db.String)
     contact = db.Column(db.Integer)
-    
+    _password_hash = db.Column(db.String, nullable=False)
     Shopproduct = db.relationship("Shopproduct", backref="Shopproduct")
 
     @validates('username', 'shopname', 'address','contact')
@@ -18,6 +20,20 @@ class Shop(db.Model):
         if not value:
             raise ValueError("Value cannot be empty")
         return value
+    
+    @hybrid_property
+    def password_hash(self):
+        return self._password_hash
+
+    @password_hash.setter
+    def password_hash(self, password):
+        password_hash = bcrypt.generate_password_hash(
+            password.encode('utf-8'))
+        self._password_hash = password_hash.decode('utf-8')
+
+    def authenticate(self, password):
+        return bcrypt.check_password_hash(
+            self._password_hash, password.encode('utf-8'))
 
 
 
