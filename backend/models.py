@@ -12,7 +12,7 @@ class Shop(db.Model):
     shopname = db.Column(db.String)
     address = db.Column(db.String)
     contact = db.Column(db.Integer)
-    _password_hash = db.Column(db.String, nullable=False)
+    _password_hash = db.Column(db.String)
     Shopproduct = db.relationship("Shopproduct", backref="Shopproduct")
 
     @validates('username', 'shopname', 'address','contact')
@@ -75,11 +75,7 @@ class Product(db.Model):
             raise ValueError("Description cannot be empty")
         return description
         
-    @validates('quantity')
-    def validate_quantity(self, key, quantity):
-        if quantity is None or quantity < 0:
-            raise ValueError("Quantity must start from 1")
-        return quantity
+
 
     # @validates('image') #validate url
     # def validate_image(self, key, image):

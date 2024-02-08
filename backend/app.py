@@ -1,4 +1,4 @@
-from flask import jsonify, make_response, request
+from flask import jsonify, make_response, request, session
 from models import Shop, Product
 from config import app, db
 
@@ -9,6 +9,53 @@ def home():
     response = "<h1>Hello world starting a market</h1>"
     return response
     pass
+
+@app.route("/login", methods=["POST"])
+def login():
+    data = request.json
+    username = data.get("username")
+
+    if not username:
+        return jsonify({"error": "missing username"}), 400
+
+    # Assuming there's a function to authenticate the user based on username
+    user = Shop.query.filter_by(username=username).first()
+
+    if not user:
+        return jsonify({"error": "user not found"}), 404
+
+    # Set the user's ID in the session
+    session['user_id'] = user.id
+
+    # Return a success response
+    return jsonify({"message": f"User {username} logged in"}), 200
+
+@app.route("/logout", methods=["POST"])
+def logout():
+    # Clear the session to log out the user
+    session.clear()
+    return jsonify({"message": "Logged out successfully"}), 200
+
+@app.route("/user", methods=["GET"])
+def get_current_user():
+    # Check if user is logged in
+    if 'user_id' in session:
+        user_id = session['user_id']
+        # Retrieve user information from database
+        user = Shop.query.get(user_id)
+        if user:
+            user_data = {
+                "id": user.id,
+                "username": user.username,
+                "shopname": user.shopname,
+                "address": user.address,
+                "contact": user.contact
+            }
+            return jsonify(user_data), 200
+        else:
+            return jsonify({"error": "user not found"}), 404
+    else:
+        return jsonify({"error": "user not logged in"}), 401
 
 @app.route("/shops", methods=["GET"])
 def get_shops():
