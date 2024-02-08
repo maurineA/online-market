@@ -13,29 +13,13 @@ class Shop(db.Model):
     
     Shopproduct = db.relationship("Shopproduct", backref="Shopproduct")
 
-    @validates('username')
-    def validate_username(self, key, username):
-        if not username:
-            raise ValueError("Username cannot be empty")
-        return username
+    @validates('username', 'shopname', 'address','contact')
+    def validate_username(self, key, value):
+        if not value:
+            raise ValueError("Value cannot be empty")
+        return value
 
-    @validates('shopname')
-    def validate_shopname(self, key, shopname):
-        if not shopname:
-            raise ValueError("Shopname cannot be empty")
-        return shopname
 
-    @validates('address')
-    def validate_address(self, key, address):
-        if not address:
-            raise ValueError("Address cannot be empty")
-        return address
-
-    @validates('contact')
-    def validate_contact(self, key, contact):
-        if not contact:
-            raise ValueError("Contact cannot be empty")
-        return contact
 
 class Shopproduct(db.Model):
     __tablename__ ="shopproducts"
@@ -78,7 +62,7 @@ class Product(db.Model):
     @validates('quantity')
     def validate_quantity(self, key, quantity):
         if quantity is None or quantity < 0:
-            raise ValueError("Quantity must be a non-negative integer")
+            raise ValueError("Quantity must start from 1")
         return quantity
 
     # @validates('image') #validate url
