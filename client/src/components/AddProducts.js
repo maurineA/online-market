@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 function AddProducts() {
+    const {shopId} = useParams()
     const [product, setProduct] = useState({
         name: '',
         description: '',
         quantity: '',
         image: '',
-        price: ''
+        price: '',
+        shopId: shopId 
     });
-
 
     function handleChange(e) {
         const { name, value } = e.target;
@@ -21,7 +23,7 @@ function AddProducts() {
     async function handleSubmit(e) {
         e.preventDefault();
 
-        const response = await fetch("", {
+        const response = await fetch("/add-product", {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json"
@@ -36,9 +38,9 @@ function AddProducts() {
                 description: '',
                 quantity: '',
                 image: '',
-                price: ''
+                price: '',
+                shopId: shopId 
             });
-            
         } else {
             console.error("Failed to create product");
         }
