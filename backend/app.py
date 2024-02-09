@@ -1,5 +1,7 @@
 from flask import jsonify, make_response, request, session
-from models import Shop, Product
+
+from models import Shop, Product,Shopproduct
+
 from config import app, db
 
 
@@ -97,22 +99,26 @@ def get_shop(id):
 
 @app.route("/products", methods=["GET"])
 def get_products():
-    products = Product.query.all()
+    shop_id = request.args.get("shopId")
+    if not shop_id:
+        return jsonify({"error": "Missing shopId parameter"}), 400
+
+    products = Shopproduct.query.filter_by(shop_id=shop_id).all()
     productlist = []
-    for product in products:
-        product_dict={
-            "id": product.id,
-            "name": product.name,
-            "description": product.description,
-            "quantity": product.quantity,
-            "image": product.image,
+    for shop_product in products:
+        product = Product.query.get(shop_product.product_id)
+        if product:
+            product_dict = {
+                "id": product.id,
+                "name": product.name,
+                "description": product.description,
+                "quantity": product.quantity,
+                "image": product.image,
+                "price": shop_product.price,
+            }
+            productlist.append(product_dict)
+    return jsonify(productlist), 200
 
-        }
-
-        productlist.append(product_dict)
-    response = make_response(jsonify(productlist), 200)
-
-    return response
     
 
 

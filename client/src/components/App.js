@@ -7,18 +7,20 @@ import ShopProducts from './ShopProducts';
 import NewShop from './NewShop';
 import Footer from './Footer';
 import Login from './Login';
+import AddProducts from './AddProducts';
 function App() {
   return (
     <div>
         <NavBar />
         <Routes>
+          <Route path="/about" element={<AddProducts/>} />
         <Route path='/' element={<Login/>}></Route>
         <Route path='/home' element={<Home/>}></Route>
         <Route path='/shops' element={<Shops/>}></Route>
-        <Route path='/shops/:productsId' element={<ShopProducts/>}></Route>
+        <Route path='/shops/:shopId' element={<ShopProducts />} />
+
         <Route path='/newShop' element={<NewShop/>}></Route>
         </Routes>
-        
         <Footer/>
     </div>
   )
