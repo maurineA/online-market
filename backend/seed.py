@@ -1,9 +1,12 @@
 from models import db, Shop, Product, Shopproduct
-from app import app
+from config import app
 
 def seed_data():
     with app.app_context():
 
+        Shop.query.delete()
+        Product.query.delete()
+        Shopproduct.query.delete()
         # Create shops
         shop1 = Shop(username='John Dai', shopname='Ever Green', address='123 Main St, Nairobi, Kenya', contact='1234567890')
         shop2 = Shop(username='Alice Kamau', shopname='Afro Chic Boutique', address='456 Moi Avenue, Mombasa, Kenya', contact='0987654321')
@@ -33,7 +36,6 @@ def seed_data():
         product13 = Product(name='African Shea Butter', description='Pure and natural African shea butter, rich in vitamins and antioxidants, perfect for moisturizing skin and hair.', quantity='23', image='https://images.pexels.com/photos/94443/pexels-photo-94443.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')
         product14 = Product(name='Apple', description='Fresh and ready to eat', quantity='16', image='https://images.pexels.com/photos/672101/pexels-photo-672101.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')
 
-        
         # Add shops and products to database
         db.session.add_all([shop1, shop2, shop3, shop4, shop5, shop6, shop7, shop8, shop9, shop10,
                             product1, product2, product3, product4, product5, product6, product7, product8, 
