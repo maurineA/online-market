@@ -173,8 +173,49 @@ def post_shop():
 
     response = make_response(jsonify(shop_data),200) 
     return response
+@app.route("/add-product",methods = ["POST"])
+def post_product():
+    data = request.json
+    name = data.get("name")
+    description =data.get("description")
+    quantity = data.get("quantity")
+    price = data.get("price")
+    image = data.get("image")
+    shop_id = data.get("shopId")
+    
+    if not all([name,description,quantity,price,image,shop_id]):
+        return jsonify({"error":"missing parameter"}),400
+    new_product = Product(
+        name =name,
+        description=description,
+        quantity=quantity,
+        price=price,
+        image=image
+    )
+    db.session.add(new_product)
+    db.session.commit()
+    
+    new_shop_product =Shopproduct(
+        shop_id = shop_id,
+        product_id =new_product.id,
+        price =price
+       )
+    db.session.add(new_shop_product)
+    db.session.commit()
+    
+    
+    product_data = {
+        "id": new_product.id,
+        "name": new_product.name,
+        "description": new_product.description,
+        "quantity": new_product.quantity,
+        "image": new_product.image,
+        "price": new_shop_product.price,
+        "shop_id": new_shop_product.shop_id
+    }
 
-
+    response = make_response(jsonify(product_data), 200)
+    return response
 
 
 

@@ -1,15 +1,28 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom';
+import React  from 'react'
+import { NavLink ,Link} from 'react-router-dom';
+import './navbar.css'; 
 
 
 function NavBar() {
   return (
-    <div>
-       <NavLink to="/home"style={{marginRight:"20px"}}>Home</NavLink>
-      <NavLink to="/shops" style={{marginRight:"20px"}}>Shops</NavLink>
-      <NavLink to="/newShop" style={{marginRight:"20px"}}>newshop</NavLink>
-      </div>
-        
+   <nav>
+        <Link to='/home' className="title">Online Market</Link>
+     
+    <ul >
+      <li>
+        <NavLink to='/'>Login</NavLink>
+      </li>
+      
+      <li>
+        <NavLink to='/shops'>Shops</NavLink>
+         </li> 
+      <li>
+        <NavLink to='/newShop'>New shop</NavLink>
+         </li>
+    </ul>
+   </nav>     
+      
+
         
   
 
@@ -17,4 +30,4 @@ function NavBar() {
   )
 }
 
-export default NavBar
+export default NavBar 

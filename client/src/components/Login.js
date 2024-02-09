@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
-import './form.css'; 
 
 function Login() {
   const navigate = useNavigate();
@@ -34,46 +33,57 @@ function Login() {
   }
 
   return (
-    <div className="login-container">
-      <form onSubmit={handleSubmit} className="login-form">
-        <div className="form-group">
-          <label htmlFor="fullname">Username</label>
-          <input
-            type="text"
-            id="fullname"
-            name="fullname"
-            placeholder="Enter a valid username"
-            value={input.fullname}
-            onChange={handleChange}
-            required
-          />
+    <div className="container d-flex flex-column min-vh-100">
+      <div className="row justify-content-center align-items-center flex-grow-1">
+        <div className="col-md-6">
+          <form onSubmit={handleSubmit} className="login-form p-4 shadow rounded">
+            <h2 className="mb-4 text-center">Login</h2>
+            <div className="mb-3">
+              <label htmlFor="fullname" className="form-label">Username</label>
+              <input
+                type="text"
+                id="fullname"
+                name="fullname"
+                className="form-control form-control-lg"
+                placeholder="Enter a valid username"
+                value={input.fullname}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="email" className="form-label">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                className="form-control form-control-lg"
+                placeholder="Input your email"
+                value={input.email}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="password" className="form-label">Password</label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                className="form-control form-control-lg"
+                placeholder="Enter a valid password"
+                value={input.password}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className="text-center">
+              <button type="submit" className="btn btn-primary btn-lg">Login</button>
+            </div>
+          </form>
         </div>
-        <div className="form-group">
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            placeholder="Input your email"
-            value={input.email}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            placeholder="Enter a valid password"
-            value={input.password}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <button type="submit" className="login-button">Login</button>
-      </form>
+      </div>
+      
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import React from 'react'
+import './navbar.css'; 
 import Home from './Home'
 import NavBar from './NavBar'
 import { Route, Routes } from 'react-router-dom';
@@ -18,6 +19,8 @@ function App() {
         <Route path='/home' element={<Home/>}></Route>
         <Route path='/shops' element={<Shops/>}></Route>
         <Route path='/shops/:shopId' element={<ShopProducts />} />
+        <Route path='/add-products/:shopId' element={<AddProducts/>}></Route>
+
 
         <Route path='/newShop' element={<NewShop/>}></Route>
         </Routes>
