@@ -5,32 +5,34 @@ def seed_data():
     with app.app_context():
 
         # Create shops
-        shop1 = Shop(username='John Doe', shopname='Ever Green', address='123 Main St', contact='1234567890')
-        shop2 = Shop(username='shop_owner2', shopname='Shop 2', address='456 Elm St', contact='0987654321')
-        shop3 = Shop(username='shop_owner3', shopname='Shop 3', address='789 Oak St', contact='9876543210')
-        shop4 = Shop(username='shop_owner4', shopname='Shop 4', address='101 Maple St', contact='5551234567')
-        shop5 = Shop(username='shop_owner5', shopname='Shop 5', address='678 Pine St', contact='3334445678')
-        shop6 = Shop(username='shop_owner6', shopname='Shop 6', address='246 Cedar St', contact='4445556789')
-        shop7 = Shop(username='shop_owner7', shopname='Shop 7', address='135 Walnut St', contact='7778889999')
-        shop8 = Shop(username='shop_owner8', shopname='Shop 8', address='864 Birch St', contact='6669998888')
-        shop9 = Shop(username='shop_owner9', shopname='Shop 9', address='753 Oak St', contact='1112223333')
-        shop10 = Shop(username='shop_owner10', shopname='Shop 10', address='369 Elm St', contact='4445556666')
+        shop1 = Shop(username='John Dai', shopname='Ever Green', address='123 Main St, Nairobi, Kenya', contact='1234567890')
+        shop2 = Shop(username='Alice Kamau', shopname='Afro Chic Boutique', address='456 Moi Avenue, Mombasa, Kenya', contact='0987654321')
+        shop3 = Shop(username='Peter Maina', shopname='Safari Crafts', address='789 Kenyatta Avenue, Nakuru, Kenya', contact='9876543210')
+        shop4 = Shop(username='Grace Wanjiku', shopname='Kilimanjaro Fashion House', address='101 Tom Mboya Street, Kisumu, Kenya', contact='5551234567')
+        shop5 = Shop(username='James Mwangi', shopname='Serengeti Jewelry', address='678 Biashara Street, Eldoret, Kenya', contact='3334445678')
+        shop6 = Shop(username='Fatma Ahmed', shopname='Zanzibar Treasures', address='246 Lamu Road, Malindi, Kenya', contact='4445556789')
+        shop7 = Shop(username='Charles Omondi', shopname='Maasai Mara Crafts', address='135 Naivasha Road, Naivasha, Kenya', contact='7778889999')
+        shop8 = Shop(username='Esther Njeri', shopname='Kiswahili Delights', address='864 Diani Beach Road, Diani, Kenya', contact='6669998888')
+        shop9 = Shop(username='Stephen Kariuki', shopname='Nairobi Gems', address='753 Langata Road, Nairobi, Kenya', contact='1112223333')
+        shop10 = Shop(username='Lucy Wangari', shopname='Kikoy Paradise', address='369 Lamu Street, Lamu, Kenya', contact='4445556666')
+
         
         # Create products
-        product1 = Product(name='Eggs', description='Big eggs sold in small tray of', quantity='6', image='https://images.pexels.com/photos/2985167/pexels-photo-2985167.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')
-        product2 = Product(name='Product 2', description='Description of Product 2', quantity='20', image='product2.jpg')
-        product3 = Product(name='Product 3', description='Description of Product 3', quantity='15', image='product3.jpg')
-        product4 = Product(name='Product 4', description='Description of Product 4', quantity='25', image='product4.jpg')
-        product5 = Product(name='Product 5', description='Description of Product 5', quantity='8', image='product5.jpg')
-        product6 = Product(name='Product 6', description='Description of Product 6', quantity='30', image='product6.jpg')
-        product7 = Product(name='Product 7', description='Description of Product 7', quantity='12', image='product7.jpg')
-        product8 = Product(name='Product 8', description='Description of Product 8', quantity='18', image='product8.jpg')
-        product9 = Product(name='Product 9', description='Description of Product 9', quantity='22', image='product9.jpg')
-        product10 = Product(name='Product 10', description='Description of Product 10', quantity='17', image='product10.jpg')
-        product11 = Product(name='Product 11', description='Description of Product 11', quantity='20', image='product11.jpg')
-        product12 = Product(name='Product 12', description='Description of Product 12', quantity='15', image='product12.jpg')
-        product13 = Product(name='Product 13', description='Description of Product 13', quantity='23', image='product13.jpg')
-        product14 = Product(name='Product 14', description='Description of Product 14', quantity='16', image='product14.jpg')
+        product1 = Product(name='Fresh Grade A Large Eggs', description='Farm-fresh large eggs, perfect for breakfast or baking.', quantity='12', image='https://images.pexels.com/photos/2985167/pexels-photo-2985167.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')
+        product2 = Product(name='Organic Avocado', description='Creamy and nutrient-rich Hass avocados, locally sourced from Kenyan farms.', quantity='20', image='https://www.pexels.com/photo/halves-of-unpeeled-avocado-in-studio-6157033/')
+        product3 = Product(name='Handwoven Kiondo Bag', description='Traditional handwoven Kiondo bag made from sisal and recycled plastic, durable and eco-friendly.', quantity='15', image='https://media.istockphoto.com/id/1810018646/photo/hand-woven-shopping-bags-at-a-moroccan-market.jpg?s=1024x1024&w=is&k=20&c=jm-6SLFes2w6EIUirg2D-x2u1_ZLQDHOuPT2Gjdi-Zc=')
+        product4 = Product(name='Maasai Beaded Necklace', description='Beautifully crafted Maasai beaded necklace, featuring intricate patterns and vibrant colors.', quantity='25', image='https://media.istockphoto.com/id/1088342176/photo/masais-bracelets.jpg?s=1024x1024&w=is&k=20&c=WFzpC2KHiyqgdUV64DibOTlFf7buDOY7NjUv58C35SQ=')
+        product5 = Product(name='Kenyan Black Tea', description='Premium black tea leaves, carefully selected and packed for a rich and aromatic cup of tea.', quantity='8', image='https://media.istockphoto.com/id/1156623111/photo/two-cups-of-hot-tea-bags-cookies-and-honey-the-process-of-brewing-tea-selective-focus.jpg?s=1024x1024&w=is&k=20&c=TSijWNiX3PEwWj6DFtrNo193RF-KhsnBo49k5XTLivI=')
+        product6 = Product(name='Kikoy Beach Towel', description='Colorful and lightweight Kikoy beach towel, perfect for lounging by the beach or poolside.', quantity='30', image='https://media.istockphoto.com/id/518284570/photo/beach-towel-isolated-on-white.jpg?s=1024x1024&w=is&k=20&c=cbXMQMlVy8WgxhHEkA2e5NtA7vOCUJF_A-dxT7m29_o=')
+        product7 = Product(name='Mango Fruit', description='Fresh and Juicy, straight from farm.', quantity='12', image='https://media.istockphoto.com/id/478090801/photo/mango.jpg?s=1024x1024&w=is&k=20&c=Xm9Ex1-orCXzteXzgBcJvaycnfE3oORH5Zgj4RhsE5s=')
+        product8 = Product(name='Ripe Bananas', description='Freash and ready to eat.', quantity='18', image='https://www.pexels.com/photo/ripe-bananas-2316466/')
+        product9 = Product(name='Artistic wooden Chair', description='Artistic wooden chair so strong and durable', quantity='22', image='https://www.pexels.com/photo/brown-wooden-chair-116910/')
+        product10 = Product(name='Kitenge Fabric Dress', description='Stylish Kitenge fabric dress, handmade by local artisans, featuring unique African prints and designs.', quantity='17', image='https://media.istockphoto.com/id/164297978/photo/african-american-fashion-model.jpg?s=1024x1024&w=is&k=20&c=u8INSleKiBvYsBooRNkwfh1l6U5W6hVlBegpr_Pocs4=')
+        product11 = Product(name='Sports shoes', description=' comfortable and stylish for everyday wear.', quantity='20', image='https://images.pexels.com/photos/2385477/pexels-photo-2385477.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')
+        product12 = Product(name='Kenyan Maize Flour', description='High-quality maize flour, stone-ground and sifted for making delicious ugali, a staple food in Kenyan cuisine.', quantity='15', image='https://media.istockphoto.com/id/1333161790/photo/corn-flour-and-fresh-sweetcorn-isolated-on-white.jpg?s=1024x1024&w=is&k=20&c=kuQgzqcpjk3QFlrmJWjvxxaRy5HXfuDj_c0WAEuZvrg=')
+        product13 = Product(name='African Shea Butter', description='Pure and natural African shea butter, rich in vitamins and antioxidants, perfect for moisturizing skin and hair.', quantity='23', image='https://images.pexels.com/photos/94443/pexels-photo-94443.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')
+        product14 = Product(name='Apple', description='Fresh and ready to eat', quantity='16', image='https://images.pexels.com/photos/672101/pexels-photo-672101.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')
+
         
         # Add shops and products to database
         db.session.add_all([shop1, shop2, shop3, shop4, shop5, shop6, shop7, shop8, shop9, shop10,
