@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import AddProducts from './AddProducts';
 
 function NewShop() {
   const [name, setName] = useState('');
@@ -36,6 +37,9 @@ function NewShop() {
   }
   
   return (
+    
+    <>
+    <AddProducts/>
     <form onSubmit={handleSubmit}>
       
       <input type="text" placeholder="Shop Name" value={shopName} onChange={(e) => setShopName(e.target.value)} />
@@ -44,6 +48,7 @@ function NewShop() {
       <input type="text" placeholder='contact' value={contact}onChange={(e)=>setContact(e.target.value)}/>
       <button type="submit">Add Shop</button>
     </form>
+    </>
   );
 }
 export default NewShop

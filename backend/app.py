@@ -1,24 +1,61 @@
-
-import os
-from flask import Flask, jsonify, make_response, request
-from flask_migrate import Migrate
-from flask_cors import CORS
-from models import db, Shop, Product
+from flask import jsonify, make_response, request, session
+from models import Shop, Product,Shopproduct
+from config import app, db
 
 
-app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///market.db"
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
-migrate = Migrate(app,db)
-CORS(app)
-db.init_app(app)
 
 @app.route("/")
 def home():
     response = "<h1>Hello world starting a market</h1>"
     return response
     pass
+
+@app.route("/login", methods=["POST"])
+def login():
+    data = request.json
+    username = data.get("username")
+
+    if not username:
+        return jsonify({"error": "missing username"}), 400
+
+    # Assuming there's a function to authenticate the user based on username
+    user = Shop.query.filter_by(username=username).first()
+
+    if not user:
+        return jsonify({"error": "user not found"}), 404
+
+    # Set the user's ID in the session
+    session['user_id'] = user.id
+
+    # Return a success response
+    return jsonify({"message": f"User {username} logged in"}), 200
+
+@app.route("/logout", methods=["POST"])
+def logout():
+    # Clear the session to log out the user
+    session.clear()
+    return jsonify({"message": "Logged out successfully"}), 200
+
+@app.route("/user", methods=["GET"])
+def get_current_user():
+    # Check if user is logged in
+    if 'user_id' in session:
+        user_id = session['user_id']
+        # Retrieve user information from database
+        user = Shop.query.get(user_id)
+        if user:
+            user_data = {
+                "id": user.id,
+                "username": user.username,
+                "shopname": user.shopname,
+                "address": user.address,
+                "contact": user.contact
+            }
+            return jsonify(user_data), 200
+        else:
+            return jsonify({"error": "user not found"}), 404
+    else:
+        return jsonify({"error": "user not logged in"}), 401
 
 @app.route("/shops", methods=["GET"])
 def get_shops():
@@ -60,22 +97,26 @@ def get_shop(id):
 
 @app.route("/products", methods=["GET"])
 def get_products():
-    products = Product.query.all()
+    shop_id = request.args.get("shopId")
+    if not shop_id:
+        return jsonify({"error": "Missing shopId parameter"}), 400
+
+    products = Shopproduct.query.filter_by(shop_id=shop_id).all()
     productlist = []
-    for product in products:
-        product_dict={
-            "id": product.id,
-            "name": product.name,
-            "description": product.description,
-            "quantity": product.quantity,
-            "image": product.image,
+    for shop_product in products:
+        product = Product.query.get(shop_product.product_id)
+        if product:
+            product_dict = {
+                "id": product.id,
+                "name": product.name,
+                "description": product.description,
+                "quantity": product.quantity,
+                "image": product.image,
+                "price": shop_product.price,
+            }
+            productlist.append(product_dict)
+    return jsonify(productlist), 200
 
-        }
-
-        productlist.append(product_dict)
-    response = make_response(jsonify(productlist), 200)
-
-    return response
     
 
 
