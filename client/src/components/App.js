@@ -18,6 +18,7 @@ function App() {
         <Route path='/shops/:productsId' element={<ShopProducts/>}></Route>
         <Route path='/newShop' element={<NewShop/>}></Route>
         </Routes>
+        
         <Footer/>
     </div>
   )
