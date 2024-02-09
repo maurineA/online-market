@@ -16,3 +16,7 @@ migrate = Migrate(app, db)
 db.init_app(app)
 
 bcrypt = Bcrypt(app)
+# =======
+# bcrypt = Bcrypt(app)
+
+# >>>>>>> main
