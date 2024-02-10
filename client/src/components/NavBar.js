@@ -9,6 +9,9 @@ function NavBar() {
         <Link to='/home' className="title">Online Market</Link>
      
     <ul >
+    <li>
+        <NavLink to='/'>Sign Up</NavLink>
+      </li>
       <li>
         <NavLink to='/'>Login</NavLink>
       </li>

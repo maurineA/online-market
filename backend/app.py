@@ -1,6 +1,7 @@
-from flask import jsonify, make_response, request, session
+from flask import jsonify, make_response, request, session, url_for
 
-from models import Shop, Product,Shopproduct
+from models import User, Shop, Product, Shopproduct
+
 
 from config import app, db
 
@@ -11,6 +12,33 @@ def home():
     response = "<h1>Hello world starting a market</h1>"
     return response
     pass
+@app.route("/signup", methods=["POST"])
+def signup():
+    data = request.json
+    fullname = data.get("fullname")
+    email = data.get("email")
+    username = data.get("username")
+    password = data.get("password")
+
+    if not fullname or not email or not username or not password:
+        return jsonify({"error": "missing required fields"}), 400
+
+    # Check if username or email already exists
+    if User.query.filter_by(username=username).first() is not None:
+        return jsonify({"error": "username already exists"}), 409
+
+    if User.query.filter_by(email=email).first() is not None:
+        return jsonify({"error": "email already exists"}), 409
+
+    # Create a new user
+    new_user = User(username=username, email=email)
+    new_user.password_hash = password  # Hash the password
+
+    # Add the user to the database
+    db.session.add(new_user)
+    db.session.commit()
+
+    return jsonify({"message": "User created successfully"}), 201
 
 @app.route("/login", methods=["POST"])
 def login():
@@ -31,6 +59,8 @@ def login():
 
     # Return a success response
     return jsonify({"message": f"User {username} logged in"}), 200
+
+
 
 @app.route("/logout", methods=["POST"])
 def logout():
