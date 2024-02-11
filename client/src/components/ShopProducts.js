@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 function ShopProducts() {
     const [products, setProducts] = useState([]);
@@ -14,7 +13,8 @@ function ShopProducts() {
     }, [shopId]); 
 
     return (
-        <div className="container mt-4">
+        <>
+        <div className="container mt-4" style={{padding:"50px"}}>
             <h1 className="text-center mb-4">Shop Products</h1>
             <div className="row">
                 {products.map((product) => (
@@ -34,6 +34,7 @@ function ShopProducts() {
                 ))}
             </div>
         </div>
+        </>
     );
 }
 

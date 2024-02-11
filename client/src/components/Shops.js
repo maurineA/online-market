@@ -14,8 +14,8 @@ function Shops() {
     console.log(shops)
 
     return (
-        <div className="container mt-5">
-            <h1 className="mb-4 text-center">Shops Available</h1>
+        <div className="container mt-5"style={{padding:"20px"}}>
+            <h3 className="mb-4 text-center">Shops Available</h3>
             <SearchBar shops={shops} />
             <div className="row">
                 {shops.map((shop) => (

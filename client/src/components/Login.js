@@ -23,11 +23,9 @@ function Login() {
     const { fullname, email, password } = input;
 
     if (fullname.trim() !== '' && email.trim() !== '' && password.trim() !== '') {
-      // If all fields are filled, navigate to the home page
-      navigate('/home'); // Redirect to the home page
+      navigate('/home'); 
       alert(`Thanks ${input.fullname} for joining us`);
     } else {
-      // If any field is empty, show an alert
       alert('Please enter all fields');
     }
   }

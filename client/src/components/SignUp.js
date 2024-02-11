@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
 
-function Signup() {
+function Signup(updateUserRole) {
   const navigate = useNavigate();
   const [input, setInput] = useState({
     fullname: '',
@@ -40,7 +40,8 @@ function Signup() {
     .then(data => {
       // If signup successful, navigate to the home page
       alert(`Thanks ${input.fullname} for joining us`);
-      navigate('/login');
+      updateUserRole(data.isShopOwner);                   
+      navigate('/home');
       
     })
     .catch(error => {

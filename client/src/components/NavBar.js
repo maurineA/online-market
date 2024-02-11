@@ -1,36 +1,36 @@
-import React  from 'react'
-import { NavLink ,Link} from 'react-router-dom';
-import './navbar.css'; 
+import React from 'react';
+import { NavLink, Link } from 'react-router-dom';
+import './navbar.css';
 
-
-function NavBar() {
+function NavBar({ isShopOwner }) {
   return (
-   <nav>
-        <Link to='/home' className="title">Online Market</Link>
-     
-    <ul >
-    <li>
+    <nav className='fixed-top'>
+      
+      <Link  className="title">Online Market</Link>
+      <ul>
+        <li>
+          <NavLink to="/home">Home</NavLink>
+        </li>
+      <li>
         <NavLink to='/'>Sign Up</NavLink>
       </li>
-      <li>
-        <NavLink to='/'>Login</NavLink>
-      </li>
-      
-      <li>
-        <NavLink to='/shops'>Shops</NavLink>
-         </li> 
-      <li>
-        <NavLink to='/newShop'>New shop</NavLink>
-         </li>
-    </ul>
-   </nav>     
-      
-
-        
-  
-
-        
-  )
+        <li>
+          <NavLink to='/'>Login</NavLink> 
+        </li>
+        <li>
+          <NavLink to='/shops'>Shops</NavLink>
+        </li>
+        {isShopOwner && (
+          <li>
+            <NavLink to='/add-products'>Add Products</NavLink>
+          </li>
+        )}
+        <li>
+          <NavLink to='/newShop'>New Shop</NavLink>
+        </li>
+      </ul>
+    </nav>
+  );
 }
 
-export default NavBar 
+export default NavBar;
