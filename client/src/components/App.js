@@ -1,3 +1,4 @@
+
 import React from 'react'
 import './navbar.css'; 
 import Home from './Home'
@@ -9,6 +10,8 @@ import NewShop from './NewShop';
 import Footer from './Footer';
 import Login from './Login';
 import AddProducts from './AddProducts';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 function App() {
   return (
     <div>

@@ -144,6 +144,13 @@ def get_product(id):
 
 @app.route("/addshop", methods=["POST"])
 def post_shop():
+    # if  "user_id" not in session:
+    #     return jsonify({"error":"user not logged in"}),400
+    
+    # existing_shop = Shop.filter_by(username==session["user_id"]).first()
+    # if existing_shop:
+    #     return jsonify({"error":"User already has a shop."}),400
+    
     data = request.json
     username = data.get("username")
     shopname = data.get("shopname")
@@ -175,6 +182,9 @@ def post_shop():
     return response
 @app.route("/add-product",methods = ["POST"])
 def post_product():
+    # if  "user_id" not in session:
+    #     return jsonify({"login":"Please login first"}) ,401
+    
     data = request.json
     name = data.get("name")
     description =data.get("description")

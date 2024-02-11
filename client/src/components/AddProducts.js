@@ -47,7 +47,7 @@ function AddProducts() {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} style={{padding:"50px"}}>
             <label htmlFor="name">Name:
                 <input
                     type="text"
@@ -58,6 +58,7 @@ function AddProducts() {
                     required
                 />
             </label>
+            <br />
             <label htmlFor="description">Description:
                 <input
                     type="text"
@@ -68,6 +69,7 @@ function AddProducts() {
                     required
                 />
             </label>
+            <br />
             <label htmlFor="quantity">Quantity:
                 <input
                     type="number"
@@ -79,6 +81,8 @@ function AddProducts() {
                     required
                 />
             </label>
+            <br />
+
             <label htmlFor="price">Price:
                 <input
                     type="number"
@@ -90,6 +94,7 @@ function AddProducts() {
                     required
                 />
             </label>
+            <br />
             <label htmlFor="image">Image:
                 <input
                     type="text"
@@ -100,6 +105,7 @@ function AddProducts() {
                     required
                 />
             </label>
+            <br />
             <button type="submit">Submit</button>
         </form>
     );

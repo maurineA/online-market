@@ -2,14 +2,13 @@ import React  from 'react'
 import { NavLink ,Link} from 'react-router-dom';
 import './navbar.css'; 
 
-
 function NavBar() {
   return (
-   <nav>
+   <nav className='fixed-top' style={{padding:"0px"}}>
         <Link to='/home' className="title">Online Market</Link>
      
     <ul >
-      <li>
+       <li>
         <NavLink to='/'>Login</NavLink>
       </li>
       
@@ -20,7 +19,8 @@ function NavBar() {
         <NavLink to='/newShop'>New shop</NavLink>
          </li>
     </ul>
-   </nav>     
+    
+   </nav> 
       
 
         

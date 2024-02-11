@@ -1,33 +1,39 @@
 import React from 'react';
+import 'bootstrap-icons/font/bootstrap-icons.css';
+
+
 
 function Footer() {
   return (
-    <footer style={footerStyle}>
-      <h2 style={{ marginBottom: '15px' }}>For More Info;</h2>
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <p style={{ margin: '0 10px' }}>
-          Contact us:
-          <a href="tel:0700758694">0700758694</a>
-        </p>
-        <p style={{ margin: '0 10px' }}>
-          Email us:
-          <a href="mailto:contact@example.com">onlinemarket@gmail.com</a>
-        </p>
-        <p style={{ margin: '0 10px' }}>
-          Location:
-          <a href="https://www.google.com/maps/">Google Map</a>
-        </p>
+    
+    <div className='fixed-bottom'>
+    <footer className="bg-dark text-light py-4">
+      <div className="container">
+        <div className="row">
+          <div className="col-md-6">
+            <h5>About Us</h5>
+            <p>Online market to improve on trade in the world</p>
+          </div>
+          <div className="col-md-6">
+            <h5>Contact Us</h5>
+            <address>
+              123 Main Street <br />
+              City, State, Zip <br />
+              Country:Kenya <br />
+              <i className="bi bi-envelope"></i> example@example.com <br />
+              <i className="bi bi-phone"></i> +2544567890
+            </address>
+          </div>
+        </div>
+        <div className="row mt-3">
+          <div className="col-md-12 text-center">
+            <p>&copy; 2024 Your Company. All rights reserved.</p>
+          </div>
+        </div>
       </div>
     </footer>
+  </div>
   );
 }
-
-const footerStyle = {
-  background: '#3498db', // Change this line to set your desired color
-  padding: '20px',
-  textAlign: 'center',
-  borderTop: '2px solid #ccc',
-  color: 'white', // Text color for better visibility on the background
-};
 
 export default Footer;

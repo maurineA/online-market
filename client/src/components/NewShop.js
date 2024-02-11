@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function NewShop() {
   const [name, setName] = useState('');
   const [address, setAddress] = useState('');
   const [shopName, setShopName] = useState('');
   const [contact, setContact] = useState('');
+  const navigate = useNavigate();
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -29,30 +31,41 @@ function NewShop() {
       })
       .then(data => {
         alert("Shop created successfully");
+        navigate(`/shop/${data.shopId}/add-products`);
       });
   }
-
+function handlebtn(){
+  navigate('/add-products/:shopId')
+}
   return (
-    <div className="container mt-4" style={{height:"84vh"}}>
+    <div className="container mt-4" style={{padding:"50px"}}>
       <div className="row justify-content-center">
         <div className="col-md-6">
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} style={{ border: '1px solid #ccc', borderRadius: '5px', padding: '20px' }}>
+            <h2 className="text-center mb-4">Add a New Shop</h2>
             <div className="mb-3">
-              <input type="text" className="form-control" placeholder="Shop Name" value={shopName} onChange={(e) => setShopName(e.target.value)} />
+              <label htmlFor="shopName" className="form-label">Shop Name</label>
+              <input type="text" className="form-control" id="shopName" placeholder="Enter Shop Name" value={shopName} onChange={(e) => setShopName(e.target.value)} required />
             </div>
             <div className="mb-3">
-              <input type="text" className="form-control" placeholder="Owner Name" value={name} onChange={(e) => setName(e.target.value)} />
+              <label htmlFor="ownerName" className="form-label">Owner Name</label>
+              <input type="text" className="form-control" id="ownerName" placeholder="Enter Owner Name" value={name} onChange={(e) => setName(e.target.value)} required />
             </div>
             <div className="mb-3">
-              <input type="text" className="form-control" placeholder="Address" value={address} onChange={(e) => setAddress(e.target.value)} />
+              <label htmlFor="address" className="form-label">Address</label>
+              <input type="text" className="form-control" id="address" placeholder="Enter Address" value={address} onChange={(e) => setAddress(e.target.value)} required />
             </div>
             <div className="mb-3">
-              <input type="text" className="form-control" placeholder="Contact" value={contact} onChange={(e) => setContact(e.target.value)} />
+              <label htmlFor="contact" className="form-label">Contact</label>
+              <input type="text" className="form-control" id="contact" placeholder="Enter Contact" value={contact} onChange={(e) => setContact(e.target.value)} required />
             </div>
-            <button type="submit" className="btn btn-primary">Add Shop</button>
+            <div className="d-grid">
+              <button type="submit" className="btn btn-primary">Add Shop</button>
+            </div>
           </form>
         </div>
       </div>
+      <button onClick={handlebtn}>click me</button>    
     </div>
   );
 }

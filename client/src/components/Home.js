@@ -10,7 +10,7 @@ function Home() {
   }
 
   return (
-    <div className="container">
+    <div className="container" style={{padding:"68.45px"}} >
       <div className="row">
         <div className="col-md-6">
           <img
@@ -20,7 +20,7 @@ function Home() {
           />
         </div>
         <div className="col-md-6">
-          <div className="header">
+          <div className="header" style={{padding:"20px"}}>
             <h1>Welcome to the Online Market</h1>
             <p>Discover the convenience of shopping online and explore a variety of shops from the comfort of your home.</p>
             <p>If you're a shop owner, join our marketplace and reach a wider audience by creating your own shop!</p>

@@ -14,9 +14,9 @@ nav .title {
     margin: 16px; 
     font-weight: bold;
     text-decoration: none;
-    color: aliceblue;
-    position: sticky;
-    top: 150px;
+    color: blanchedalmond; 
+    /* position: sticky; */
+    /* top: 150px; */
 }
 
 nav ul {
