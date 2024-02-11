@@ -31,7 +31,7 @@ def signup():
         return jsonify({"error": "email already exists"}), 409
 
     # Create a new user
-    new_user = User(username=username, email=email)
+    new_user = User(username=username, email=email )
     new_user.password_hash = password  # Hash the password
 
     # Add the user to the database
@@ -48,14 +48,14 @@ def login():
     if not username:
         return jsonify({"error": "missing username"}), 400
 
-    # Assuming there's a function to authenticate the user based on username
-    user = Shop.query.filter_by(username=username).first()
+    user = User.query.filter_by(username=username).first()
 
     if not user:
         return jsonify({"error": "user not found"}), 404
 
     # Set the user's ID in the session
     session['user_id'] = user.id
+    session['username'] = user.username
 
     # Return a success response
     return jsonify({"message": f"User {username} logged in"}), 200
@@ -174,11 +174,22 @@ def get_product(id):
 
 @app.route("/addshop", methods=["POST"])
 def post_shop():
+    
+    if  "user_id" not in session:
+        return jsonify({"error":"user not logged in"}),400
     data = request.json
     username = data.get("username")
     shopname = data.get("shopname")
     address = data. get("address")
     contact = data.get("contact")
+    
+    
+    existing_shop = Shop.query.filter_by(username=session['username']).first()                                   
+         
+    
+    if existing_shop:
+        return jsonify({"error":"User already has a shop."}),400
+
 
     if not all([username, shopname, address, contact]):
         return jsonify({"error": "missing parameter"}),400

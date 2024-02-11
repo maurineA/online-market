@@ -9,7 +9,7 @@ class User(db.Model):
     username = db.Column(db.String, unique=True, nullable=False)
     email = db.Column(db.String, unique=True, nullable=False)
     _password_hash = db.Column(db.String, nullable=False)
-
+    shops =db.relationship("Shop" ,backref="user")
     @validates('username', 'email')
     def validate_fields(self, key, value):
         if not value:
@@ -38,7 +38,7 @@ class Shop(db.Model):
     contact = db.Column(db.Integer)
     _password_hash = db.Column(db.String)
     Shopproduct = db.relationship("Shopproduct", backref="Shopproduct")
-
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
     @validates('username', 'shopname', 'address','contact')
     def validate_username(self, key, value):
         if not value:
