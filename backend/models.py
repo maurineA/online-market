@@ -56,7 +56,7 @@ class Shopproduct(db.Model):
 
     @validates('price')
     def validate_price(self, key, price):
-        if price is None or price <= 0:
+        if price is None or int(price) <= 0:
             raise ValueError("Price must be a positive number")
         return price
 

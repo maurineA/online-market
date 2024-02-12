@@ -17,6 +17,7 @@ function NewShop({ updateUserRole ,setShopId}) {
       shopname: shopName,
       contact: contact
     };
+  
     fetch("/addshop", {
       method: "POST",
       headers: {
@@ -24,24 +25,47 @@ function NewShop({ updateUserRole ,setShopId}) {
       },
       body: JSON.stringify(newShop)
     })
-      .then(r => {
-        if (!r.ok) {
-          throw new Error("Failed to add shop");
-        }
-        return r.json();
-      })
-      .then(data => {
-        alert("Shop created successfully");
-        updateUserRole(true);
-        setShopId(data.id); 
-        navigate(`/shop/${data.shopId}`);
+    .then(r => {
+      if (!r.ok) {
+        throw new Error("Failed to add shop");
+      }
+      return r.json();
     })
-    
-      .catch(error =>{
-        setError(error.message)
-      })
+    .then(data => {
+      alert("Shop created successfully");
+      updateUserRole(true);
+      setShopId(data.id); 
+      navigate(`/shop/${data.shopId}`);
+  
+      // Adding a product after shop creation
+      const newProduct = {
+        name: 'Sample Product',
+        description: 'Sample Description',
+        quantity: 10,
+        price: 50.00,
+        image: 'sample_image.jpg'
+      };
+  
+      // Send an array of products
+      return fetch("/add-product", {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ products: [newProduct] })
+      });
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error("Failed to add product");
+      }
+      return response.json();
+    })
+    .catch(error => {
+      setError(error.message);
+    });
   }
-
+  
 
   return (
     <>

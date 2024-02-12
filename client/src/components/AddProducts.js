@@ -44,9 +44,11 @@ function AddProducts({shopId}) {
                 });
             } else {
                 console.error("Failed to create product");
+                alert("failed  to add product")
             }
         } catch (error) {
             console.error("Error:", error);
+            
         }
     };
 
@@ -86,6 +88,7 @@ function AddProducts({shopId}) {
                         name="quantity"
                         value={formData.quantity}
                         onChange={handleChange}
+                        min={1}
                         required
                     />
                 </div>
