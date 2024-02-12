@@ -216,51 +216,63 @@ def post_shop():
 
     response = make_response(jsonify(shop_data),200) 
     return response
-@app.route("/add-product",methods = ["POST"])
+@app.route("/add-product", methods=["POST"])
 def post_product():
+    if 'user_id' not in session:
+        return jsonify({"error": "User not logged in"}), 401
+
     data = request.json
-    name = data.get("name")
-    description =data.get("description")
-    quantity = data.get("quantity")
-    price = data.get("price")
-    image = data.get("image")
-    shop_id = data.get("shopId")
-    
-    if not all([name,description,quantity,price,image,shop_id]):
-        return jsonify({"error":"missing parameter"}),400
-    new_product = Product(
-        name =name,
-        description=description,
-        quantity=quantity,
-        price=price,
-        image=image
-    )
-    db.session.add(new_product)
-    db.session.commit()
-    
-    new_shop_product =Shopproduct(
-        shop_id = shop_id,
-        product_id =new_product.id,
-        price =price
-       )
-    db.session.add(new_shop_product)
-    db.session.commit()
-    
-    
-    product_data = {
-        "id": new_product.id,
-        "name": new_product.name,
-        "description": new_product.description,
-        "quantity": new_product.quantity,
-        "image": new_product.image,
-        "price": new_shop_product.price,
-        "shop_id": new_shop_product.shop_id
-    }
+    products = data.get("products")
 
-    response = make_response(jsonify(product_data), 200)
+    if not products:
+        return jsonify({"error": "No products provided"}), 400
+
+    user_shop = Shop.query.filter_by(username=session['username']).first()
+    if not user_shop:
+        return jsonify({"error": "User doesn't have a shop"}), 400
+
+    product_data_list = []
+
+    for product in products:
+        name = product.get("name")
+        description = product.get("description")
+        quantity = product.get("quantity")
+        price = product.get("price")
+        image = product.get("image")
+
+        new_product = Product(
+            name=name,
+            description=description,
+            quantity=quantity,
+            image=image
+        )
+
+        db.session.add(new_product)
+        db.session.commit()
+
+        new_shop_product = Shopproduct(
+            shop_id=user_shop.shop_id,
+            product_id=new_product.id,
+            price=price
+        )
+
+        db.session.add(new_shop_product)
+        db.session.commit()
+
+        product_data = {
+            "id": new_product.id,
+            "name": new_product.name,
+            "description": new_product.description,
+            "quantity": new_product.quantity,
+            "image": new_product.image,
+            "price": new_shop_product.price,
+            "shop_id": new_shop_product.shop_id
+        }
+
+        product_data_list.append(product_data)
+
+    response = make_response(jsonify(product_data_list), 200)
     return response
-
-
 
 if __name__ == "__main__":
     app.run(debug=True,port=5555)

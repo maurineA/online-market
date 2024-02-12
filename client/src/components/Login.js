@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
 
-function Login() {
+function Login({updateUserRole}) {
   const navigate = useNavigate();
   const [input, setInput] = useState({
     username: '',
@@ -36,7 +36,8 @@ function Login() {
     .then(data => {
       // If login successful, navigate to the home page
       alert(`Welcome, ${input.username}`);
-      navigate('/home');
+      navigate('/shops');
+      updateUserRole(true);
     })
     .catch(error => {
       alert('Login failed. Please check your credentials.');

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function NewShop() {
+function NewShop({ updateUserRole ,setShopId}) {
   const [name, setName] = useState('');
   const [address, setAddress] = useState('');
   const [shopName, setShopName] = useState('');
@@ -32,9 +32,11 @@ function NewShop() {
       })
       .then(data => {
         alert("Shop created successfully");
+        updateUserRole(true);
+        setShopId(data.id); 
         navigate(`/shop/${data.shopId}`);
-      
-      })
+    })
+    
       .catch(error =>{
         setError(error.message)
       })
