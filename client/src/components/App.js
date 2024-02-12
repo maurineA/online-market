@@ -14,31 +14,29 @@ import Signup from './SignUp';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
-  const [isShopOwner,setIsShopOwner] =useState(false)
-  const [shopId ,setShopId] = useState(null)
-  const  updateUserRole = (isShopOwner)=> {
-    setIsShopOwner(isShopOwner)
-  }
+  const [isShopOwner, setIsShopOwner] = useState(false);
+  const [shopId, setShopId] = useState(null);
+  
+  const updateUserRole = (isShopOwner) => {
+    setIsShopOwner(isShopOwner);
+  };
 
   return (
-       <div><NavBar isShopOwner={isShopOwner}/>
-        <Routes>
-          <Route path="/logout" component={<Logout/>}></Route>
-          <Route path='login' element={<Login updateUserRole={updateUserRole}/>}></Route>
-          <Route path='/signup' element={<Signup updateUserRole={updateUserRole}/>}></Route>
-          <Route path='/' element={<Home/>}></Route>
-          <Route path='/shops' element={<Shops/>}></Route>
-          <Route path='/shops/:shopId' element={<ShopProducts />} />
-          <Route path='/add-products' element={<AddProducts shopId={shopId} />}></Route>
-
-         
-        <Route path='/newShop' element={<NewShop updateUserRole={updateUserRole } setShopId={setShopId}/>}></Route>
-        </Routes>
-        <Footer/>
+    <div>
+      <NavBar isShopOwner={isShopOwner}/>
+      <Routes>
+        <Route path="/logout" element={<Logout />} /> {/* Fix: Use 'element' instead of 'component' */}
+        <Route path="/login" element={<Login updateUserRole={updateUserRole} />} />
+        <Route path="/signup" element={<Signup updateUserRole={updateUserRole} />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/shops" element={<Shops />} />
+        <Route path="/shops/:shopId" element={<ShopProducts />} />
+        <Route path="/add-products" element={<AddProducts shopId={shopId} />} />
+        <Route path="/newShop" element={<NewShop updateUserRole={updateUserRole} setShopId={setShopId} />} />
+      </Routes>
+      <Footer />
     </div>
-  )
+  );
 } 
 
-export default App
-
-
+export default App;

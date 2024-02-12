@@ -29,7 +29,9 @@ function Logout() {
   }
 
   return (
-    <div className="container">
+   
+    <div className="container" style={{ paddingTop: '100px', paddingBottom: '30px' }}>
+      
       <h1>Logout</h1>
       <p>Are you sure you want to logout?</p>
       <button onClick={handleLogout} className="btn btn-danger">Logout</button>
