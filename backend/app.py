@@ -12,6 +12,7 @@ def home():
     response = "<h1>Hello world starting a market</h1>"
     return response
     pass
+
 @app.route("/signup", methods=["POST"])
 def signup():
     data = request.json
@@ -44,14 +45,15 @@ def signup():
 def login():
     data = request.json
     username = data.get("username")
+    password = data.get("password")
 
-    if not username:
-        return jsonify({"error": "missing username"}), 400
+    if not username or not password:
+        return jsonify({"error": "missing username or password"}), 400
 
     user = User.query.filter_by(username=username).first()
 
-    if not user:
-        return jsonify({"error": "user not found"}), 404
+    if not user or not user.check_password(password):
+        return jsonify({"error": "invalid username or password"}), 401
 
     # Set the user's ID in the session
     session['user_id'] = user.id

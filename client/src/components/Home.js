@@ -1,12 +1,16 @@
-import { useNavigate } from 'react-router-dom';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Home.css';
 
 function Home() {
   const navigate = useNavigate();
 
-  function handleclick() {
-    navigate("/newShop");
+  function handleSignUp() {
+    navigate("/signup");
+  }
+
+  function handleLogin() {
+    navigate("/login");
   }
 
   return (
@@ -24,7 +28,8 @@ function Home() {
             <h1>Welcome to the Online Market</h1>
             <p>Discover the convenience of shopping online and explore a variety of shops from the comfort of your home.</p>
             <p>If you're a shop owner, join our marketplace and reach a wider audience by creating your own shop!</p>
-            <button onClick={handleclick} className="btn btn-primary">Sign Up Your Shop</button>
+            <button onClick={handleSignUp} className="btn btn-primary">Sign Up</button>
+            <button onClick={handleLogin} className="btn btn-primary">Login</button>
           </div>
         </div>
       </div>

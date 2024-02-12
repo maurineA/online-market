@@ -9,14 +9,14 @@ function NavBar({ isShopOwner }) {
       <Link  className="title">Online Market</Link>
       <ul>
         <li>
-          <NavLink to="/home">Home</NavLink>
+          <NavLink to="/">Home</NavLink>
         </li>
-      <li>
-        <NavLink to='/'>Sign Up</NavLink>
+      {/* <li>
+        <NavLink to='/signup'>Sign Up</NavLink>
       </li>
         <li>
-          <NavLink to='/'>Login</NavLink> 
-        </li>
+          <NavLink to='/login'>Login</NavLink> 
+        </li> */}
         <li>
           <NavLink to='/shops'>Shops</NavLink>
         </li>
@@ -28,6 +28,10 @@ function NavBar({ isShopOwner }) {
         <li>
           <NavLink to='/newShop'>New Shop</NavLink>
         </li>
+
+        <li>
+          <NavLink to='/logout'>LogOut</NavLink> 
+        </li> 
       </ul>
     </nav>
   );

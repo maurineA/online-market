@@ -1,7 +1,8 @@
+// Signup.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
 
-function Signup(updateUserRole) {
+function Signup({ updateUserRole }) { // Destructure updateUserRole from props
   const navigate = useNavigate();
   const [input, setInput] = useState({
     fullname: '',
@@ -31,9 +32,7 @@ function Signup(updateUserRole) {
     })
     .then(response => {
       if (response.ok) {
-        
         return response.json();
-        // navigate('/login');
       }
       throw new Error('Signup failed');
     })
@@ -41,8 +40,7 @@ function Signup(updateUserRole) {
       // If signup successful, navigate to the home page
       alert(`Thanks ${input.fullname} for joining us`);
       updateUserRole(data.isShopOwner);                   
-      navigate('/home');
-      
+      navigate('/login');
     })
     .catch(error => {
       alert('Signup failed');

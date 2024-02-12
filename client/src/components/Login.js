@@ -4,8 +4,7 @@ import { useNavigate } from 'react-router';
 function Login() {
   const navigate = useNavigate();
   const [input, setInput] = useState({
-    fullname: '',
-    email: '',
+    username: '',
     password: ''
   });
 
@@ -20,14 +19,29 @@ function Login() {
   function handleSubmit(e) {
     e.preventDefault();
 
-    const { fullname, email, password } = input;
-
-    if (fullname.trim() !== '' && email.trim() !== '' && password.trim() !== '') {
-      navigate('/home'); 
-      alert(`Thanks ${input.fullname} for joining us`);
-    } else {
-      alert('Please enter all fields');
-    }
+    // Send login data to backend
+    fetch('/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(input),
+    })
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      }
+      throw new Error('Login failed');
+    })
+    .then(data => {
+      // If login successful, navigate to the home page
+      alert(`Welcome, ${input.username}`);
+      navigate('/home');
+    })
+    .catch(error => {
+      alert('Login failed. Please check your credentials.');
+      console.error('Error logging in:', error);
+    });
   }
 
   return (
@@ -37,27 +51,14 @@ function Login() {
           <form onSubmit={handleSubmit} className="login-form p-4 shadow rounded">
             <h2 className="mb-4 text-center">Login</h2>
             <div className="mb-3">
-              <label htmlFor="fullname" className="form-label">Username</label>
+              <label htmlFor="username" className="form-label">Username</label>
               <input
                 type="text"
-                id="fullname"
-                name="fullname"
+                id="username"
+                name="username"
                 className="form-control form-control-lg"
-                placeholder="Enter a valid username"
-                value={input.fullname}
-                onChange={handleChange}
-                required
-              />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="email" className="form-label">Email</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                className="form-control form-control-lg"
-                placeholder="Input your email"
-                value={input.email}
+                placeholder="Enter your username"
+                value={input.username}
                 onChange={handleChange}
                 required
               />
@@ -69,7 +70,7 @@ function Login() {
                 id="password"
                 name="password"
                 className="form-control form-control-lg"
-                placeholder="Enter a valid password"
+                placeholder="Enter your password"
                 value={input.password}
                 onChange={handleChange}
                 required
@@ -81,7 +82,6 @@ function Login() {
           </form>
         </div>
       </div>
-      
     </div>
   );
 }
