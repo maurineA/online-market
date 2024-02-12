@@ -21,11 +21,15 @@ function App() {
     setIsShopOwner(isShopOwner);
   };
 
+  const handleLogout = () => {
+    setIsShopOwner(false); // Update login state after logout
+  };
   return (
     <div>
-      <NavBar isShopOwner={isShopOwner}/>
+       
+      <NavBar isShopOwner={isShopOwner} handleLogout={handleLogout} />
       <Routes>
-        <Route path="/logout" element={<Logout />} /> {/* Fix: Use 'element' instead of 'component' */}
+        <Route path="/logout" element={<Logout />} /> 
         <Route path="/login" element={<Login updateUserRole={updateUserRole} />} />
         <Route path="/signup" element={<Signup updateUserRole={updateUserRole} />} />
         <Route path="/" element={<Home />} />
