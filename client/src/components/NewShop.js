@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function NewShop({ updateUserRole ,setShopId}) {
+function NewShop({ updateUserRole, setShopId }) {
   const [name, setName] = useState('');
   const [address, setAddress] = useState('');
   const [shopName, setShopName] = useState('');
   const [contact, setContact] = useState('');
-  const [error ,setError] = useState("");
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
   function handleSubmit(e) {
@@ -17,7 +17,7 @@ function NewShop({ updateUserRole ,setShopId}) {
       shopname: shopName,
       contact: contact
     };
-  
+
     fetch("/addshop", {
       method: "POST",
       headers: {
@@ -25,50 +25,25 @@ function NewShop({ updateUserRole ,setShopId}) {
       },
       body: JSON.stringify(newShop)
     })
-    .then(r => {
-      if (!r.ok) {
-        throw new Error("Failed to add shop");
-      }
-      return r.json();
-    })
-    .then(data => {
-      alert("Shop created successfully");
-      updateUserRole(true);
-      setShopId(data.id); 
-      navigate(`/shop/${data.shopId}`);
-  
-      // Adding a product after shop creation
-      const newProduct = {
-        name: 'Sample Product',
-        description: 'Sample Description',
-        quantity: 10,
-        price: 50.00,
-        image: 'sample_image.jpg'
-      };
-  
-      // Send an array of products
-      return fetch("/add-product", {
-        method: "POST",
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ products: [newProduct] })
+      .then(r => {
+        if (!r.ok) {
+          alert("Ensure you are logged in to the market")
+          throw new Error("Failed to add shop");
+        }
+        return r.json();
+      })
+      .then(data => {
+        alert("Shop created successfully");
+        updateUserRole(true);
+        setShopId(data.id);
+        navigate(`/shop/${data.shopId}`);
+      })
+      .catch(error => {
+        setError(error.message);
       });
-    })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error("Failed to add product");
-      }
-      return response.json();
-    })
-    .catch(error => {
-      setError(error.message);
-    });
   }
-  
 
   return (
-    <>
     <div className="container mt-4" style={{ padding: "50px" }}>
       <div className="row justify-content-center">
         <div className="col-md-6">
@@ -98,7 +73,6 @@ function NewShop({ updateUserRole ,setShopId}) {
         </div>
       </div>
     </div>
-    </>
   );
 }
 
