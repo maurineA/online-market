@@ -34,7 +34,7 @@ function App() {
         <Route path="/shops/:shopId" element={<ShopProducts />} />
         <Route
           path="/add-products"
-          element={isShopOwner ? <AddProducts shopId={shopId} /> : <Navigate to="/login" />}
+          element={isShopOwner ? <AddProducts shopId={shopId} /> : <Navigate to="/" />}
         />
         <Route
           path="/newShop"

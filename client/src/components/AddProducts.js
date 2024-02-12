@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function AddProducts({ shopId }) {
+    const navigate = useNavigate()
     const [formData, setFormData] = useState({
         name: '',
         description: '',
@@ -44,7 +46,8 @@ function AddProducts({ shopId }) {
                 });
             } else {
                 console.error("Failed to create product");
-                alert("Failed to add product");
+                navigate("/newShop")
+                alert("Please create  a shop first");
             }
         } catch (error) {
             console.error("Error:", error);
