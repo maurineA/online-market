@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function AddProducts({shopId}) {
+function AddProducts({ shopId }) {
     const [formData, setFormData] = useState({
         name: '',
         description: '',
@@ -28,7 +28,7 @@ function AddProducts({shopId}) {
                 },
                 body: JSON.stringify({
                     ...formData,
-                    shopId:shopId
+                    shopId: shopId
                 })
             });
 
@@ -44,22 +44,22 @@ function AddProducts({shopId}) {
                 });
             } else {
                 console.error("Failed to create product");
-                alert("failed  to add product")
+                alert("Failed to add product");
             }
         } catch (error) {
             console.error("Error:", error);
-            
         }
     };
 
     return (
-        <div className="container" style={{padding:"200px"}}>
+        <div className="container mt-5" style={{padding:"50px"}}>
             <h2>Add Product</h2>
             <form onSubmit={handleSubmit}>
                 <div className="mb-3">
-                    <label htmlFor="name">Name:</label>
+                    <label htmlFor="name" className="form-label">Name:</label>
                     <input
                         type="text"
+                        className="form-control"
                         id="name"
                         name="name"
                         value={formData.name}
@@ -69,9 +69,10 @@ function AddProducts({shopId}) {
                 </div>
 
                 <div className="mb-3">
-                    <label htmlFor="description">Description:</label>
+                    <label htmlFor="description" className="form-label">Description:</label>
                     <input
                         type="text"
+                        className="form-control"
                         id="description"
                         name="description"
                         value={formData.description}
@@ -81,9 +82,10 @@ function AddProducts({shopId}) {
                 </div>
 
                 <div className="mb-3">
-                    <label htmlFor="quantity">Quantity:</label>
+                    <label htmlFor="quantity" className="form-label">Quantity:</label>
                     <input
                         type="number"
+                        className="form-control"
                         id="quantity"
                         name="quantity"
                         value={formData.quantity}
@@ -94,9 +96,10 @@ function AddProducts({shopId}) {
                 </div>
 
                 <div className="mb-3">
-                    <label htmlFor="price">Price:</label>
+                    <label htmlFor="price" className="form-label">Price:</label>
                     <input
                         type="number"
+                        className="form-control"
                         id="price"
                         name="price"
                         value={formData.price}
@@ -106,9 +109,10 @@ function AddProducts({shopId}) {
                 </div>
 
                 <div className="mb-3">
-                    <label htmlFor="image">Image URL:</label>
+                    <label htmlFor="image" className="form-label">Image URL:</label>
                     <input
                         type="text"
+                        className="form-control"
                         id="image"
                         name="image"
                         value={formData.image}
@@ -116,8 +120,6 @@ function AddProducts({shopId}) {
                         required
                     />
                 </div>
-
-                
 
                 <button type="submit" className="btn btn-primary">Submit</button>
             </form>
