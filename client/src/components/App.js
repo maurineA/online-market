@@ -8,6 +8,7 @@ import ShopProducts from './ShopProducts';
 import NewShop from './NewShop';
 import Footer from './Footer';
 import Login from './Login';
+import Logout from './Logout'; 
 import AddProducts from './AddProducts';
 import Signup from './SignUp';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -22,6 +23,7 @@ function App() {
   return (
        <div><NavBar isShopOwner={isShopOwner}/>
         <Routes>
+          <Route path="/logout" component={<Logout/>}></Route>
           <Route path='login' element={<Login updateUserRole={updateUserRole}/>}></Route>
           <Route path='/signup' element={<Signup updateUserRole={updateUserRole}/>}></Route>
           <Route path='/' element={<Home/>}></Route>
@@ -38,3 +40,5 @@ function App() {
 } 
 
 export default App
+
+
