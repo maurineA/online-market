@@ -36,7 +36,7 @@ function NewShop({ updateUserRole, setShopId }) {
         alert("Shop created successfully");
         updateUserRole(true);
         setShopId(data.id);
-        navigate(`/shop/${data.shopId}`);
+        navigate(`/shops`);
       })
       .catch(error => {
         setError(error.message);

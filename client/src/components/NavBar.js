@@ -7,16 +7,17 @@ function NavBar({ isShopOwner }) {
     <nav className='fixed-top'>
       
       <Link  className="title">Online Market</Link>
+      <div className='menu'>
+       <span></span>
+       <span></span>
+       <span></span>
+       <span></span>
+      
+      </div>
       <ul>
         <li>
           <NavLink to="/">Home</NavLink>
         </li>
-      {/* <li>
-        <NavLink to='/signup'>Sign Up</NavLink>
-      </li>
-        <li>
-          <NavLink to='/login'>Login</NavLink> 
-        </li> */}
         <li>
           <NavLink to='/shops'>Shops</NavLink>
         </li>

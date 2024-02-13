@@ -6,13 +6,14 @@ function Logout() {
   const navigate = useNavigate();
 
   // Function to handle logout
-  function handleLogout() {
+  function handleLogout({updateUserRole}) {
     // Send a POST request to the backend to clear the session
     fetch('/logout', {
       method: 'POST',
     })
     .then(response => {
       if (response.ok) {
+        // updateUserRole(false)
         return response.json();
       }
       throw new Error('Logout failed');

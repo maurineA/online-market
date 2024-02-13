@@ -261,6 +261,32 @@ def addProduct():
     
     return jsonify(product_data),201
 
+@app.route("/update-product/<int:product_id>", methods=["PATCH"])
+def update_product(product_id):
+    product = Product.query.get(product_id)
+    if  not product:
+        return jsonify ({"error":"Product does not exist"}) ,404
+    data = request.json
+    if "name" in data:
+        product.name = data["name"]
+    if "description" in data:
+        product.description = data["description"]
+    if "quantity" in data:
+        product.quantity = data["quantity"]
+    if "price" in data:
+        product.price = data["price"]
+    if "image" in data:
+        product.image = data["image"]
+    db.session.commit()
+    return jsonify({"message":"product  updated well"}),200
 
+@app.route("/delete/<int:product_id>",methods=["DELETE"])
+def delete_product(product_id):
+    product = Product.query.get(product_id)
+    if not Product:
+        return jsonify({"error":"product not found"}),404
+    db.session.delete(product)
+    db.session.commit()
+    return jsonify ({"message":"product deleted  well"}),200
 if __name__ == "__main__":
     app.run(debug=True,port=5555)
