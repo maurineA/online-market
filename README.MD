@@ -1,8 +1,11 @@
 # Online Market
+Welcome to the Online Market application where users own shops, post their products and can view other shops. February 5/02/2024
+
+By Simon Ng'ang'a and Maurine Wambui
 
 ## Description
 
-Welcome to the Online Market! This is a simple online market application that allows users to create shops, view their own shops, and explore shops created by other users. The application consists of both a frontend and a Python Flask backend.
+This is a simple online market application that allows users to create shops, view their own shops, and explore shops created by other users. The application consists of both a frontend and a Python Flask backend.
 
 ## Features
 
@@ -42,11 +45,11 @@ Welcome to the Online Market! This is a simple online market application that al
 
 ## Usage
 
-1. Open your web browser and navigate to `http://localhost:5000`.
+1. Open your web browser and navigate to `http://localhost:4000`.
 2. Sign up for a new account or log in if you already have one.
 3. Create your own shop or explore shops created by others.
 4. create  a new  shop  and add products  for others to view  product  in it
-5. Enjoy  Tthe Online Market!
+5. Enjoy  the Online Market!
 
 ## Contributors
 
@@ -57,7 +60,7 @@ Welcome to the Online Market! This is a simple online market application that al
 
 MIT License
 
-Copyright © 2023 Simon,Maurine
+Copyright © 2024 Simon, Maurine
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
