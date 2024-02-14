@@ -6,7 +6,7 @@ function Logout() {
   const navigate = useNavigate();
 
   function handleLogout() {
-    fetch('/logout', {
+    fetch('https://online-market-28d0.onrender.com/logout', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

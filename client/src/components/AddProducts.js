@@ -23,7 +23,7 @@ function AddProducts({ shopId }) {
         e.preventDefault();
 
         try {
-            const response = await fetch("/add-product", {
+            const response = await fetch("https://online-market-28d0.onrender.com/products?shopId=1/add-product", {
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json"

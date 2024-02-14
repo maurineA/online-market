@@ -20,7 +20,7 @@ function Login({updateUserRole}) {
     e.preventDefault();
 
     // Send login data to backend
-    fetch('/login', {
+    fetch('https://online-market-28d0.onrender.com/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

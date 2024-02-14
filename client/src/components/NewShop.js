@@ -18,7 +18,7 @@ function NewShop({ updateUserRole, setShopId }) {
       contact: contact
     };
 
-    fetch("/addshop", {
+    fetch("https://online-market-28d0.onrender.com/addshop", {
       method: "POST",
       headers: {
         'Content-Type': 'application/json'
