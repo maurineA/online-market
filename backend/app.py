@@ -123,7 +123,7 @@ def get_shops():
 
 @app.route("/shop/<int:id>", methods=["GET"])
 def get_shop(id):
-    shop = Shop.query.all(id)
+    shop = Shop.query.get(id)
     if shop:
         shop_dict={
             "id": shop.id,
