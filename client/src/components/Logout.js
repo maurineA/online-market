@@ -1,29 +1,31 @@
 // Logout.js
 import React from 'react';
-import { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 
 function Logout() {
   const navigate = useNavigate();
 
-  // Function to handle logout
-  function handleLogout({updateUserRole}) {
-    // Send a POST request to the backend to clear the session
+  function handleLogout() {
     fetch('/logout', {
-      method: 'POST',
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
     })
     .then(response => {
       if (response.ok) {
-        // updateUserRole(false)
         return response.json();
       }
       throw new Error('Logout failed');
     })
     .then(data => {
-      // If logout successful, navigate to the login page
-      alert(data.message); // Display logout message
-      navigate('/login'); // Redirect to login page
+      // Handle successful logout
+      alert(data.message);
+      // Redirect to the login page after logout
+      navigate('/');
     })
     .catch(error => {
+      // Handle logout failure
       alert('Logout failed');
       console.error('Error logging out:', error);
     });
@@ -31,11 +33,14 @@ function Logout() {
 
   return (
     <div className="container" style={{ paddingTop: '100px', paddingBottom: '30px' }}>
-      <h1>Logout</h1>
-      <p>Are you sure you want to logout?</p>
-      <button onClick={handleLogout} className="btn btn-danger">Logout</button>
-    </div>
-  );
-}
+          <h1>Logout</h1>
+          <p>Are you sure you want to logout?</p>
+          <button onClick={handleLogout} className="btn btn-danger">Logout</button>
+        </div>
+
+
+      );
+    }
+ 
 
 export default Logout;

@@ -40,7 +40,7 @@ function Login({updateUserRole}) {
       updateUserRole(true);
     })
     .catch(error => {
-      alert('Login failed. Please check your credentials.');
+      alert('User not found');
       console.error('Error logging in:', error);
     });
   }

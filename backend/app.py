@@ -64,11 +64,23 @@ def login():
 
 
 
-@app.route("/logout", methods=["POST"])
+@app.route("/logout", methods=["GET"])
 def logout():
-    # Clear the session to log out the user
-    session.clear()
-    return jsonify({"message": "Logged out successfully"}), 200
+    # Check if user is logged in
+    if 'user_id' in session:
+        user_id = session.pop('user_id')
+        user = User.query.get(user_id)
+        if user:
+            # Delete the user from the database
+            db.session.delete(user)
+            db.session.commit()
+            # Clear other session data
+            session.pop('username', None)
+            return jsonify({"message": "User logged out successfully"}), 200
+        else:
+            return jsonify({"error": "User not found"}), 404
+    else:
+        return jsonify({"error": "User not logged in"}), 401
 
 @app.route("/user", methods=["GET"])
 def get_current_user():
@@ -290,3 +302,7 @@ def delete_product(product_id):
     return jsonify ({"message":"product deleted  well"}),200
 if __name__ == "__main__":
     app.run(debug=True,port=5555)
+
+
+
+
