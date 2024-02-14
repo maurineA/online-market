@@ -110,7 +110,7 @@ def get_current_user():
 
 @app.route("/shops", methods=["GET"])
 def get_shops():
-    shops = Shop.query.get()
+    shops = Shop.query.all()
     shoplist=[]
     for shop in shops:
         shop_dict={
