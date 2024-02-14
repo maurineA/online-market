@@ -301,7 +301,7 @@ def delete_product(product_id):
     db.session.commit()
     return jsonify ({"message":"product deleted  well"}),200
 if __name__ == "__main__":
-    app.run(debug=True,port=5555)
+    app.run(debug=True)
 
 
 
