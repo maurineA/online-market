@@ -27,7 +27,7 @@ function NewShop({ updateUserRole, setShopId }) {
     })
       .then(r => {
         if (!r.ok) {
-          alert("Ensure you are logged in to the market")
+          // alert("Ensure you are logged in to the market")
           throw new Error("Failed to add shop");
         }
         return r.json();

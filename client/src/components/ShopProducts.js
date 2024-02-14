@@ -11,7 +11,7 @@ function ShopProducts() {
             .then(data => setProducts(data))
             .catch(error => console.error('Error fetching products:', error));
     }, [shopId]); 
-
+console.log(products);
     return (
         <>
         <div className="container mt-4" style={{padding:"50px"}}>

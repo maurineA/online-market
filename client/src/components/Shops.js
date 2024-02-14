@@ -23,7 +23,7 @@ function Shops() {
                         <div className="card bg-light">
                             <div className="card-body">
                                 <h2 className="card-title">
-                                    <Link to={`https://online-market-28d0.onrender.com/shops/${shop.id}`} className="text-decoration-none">{shop.shopname}</Link>
+                                    <Link to={`/shops/${shop.id}`} className="text-decoration-none">{shop.shopname}</Link>
                                 </h2>
                                 <p className="card-subtitle mb-2 text-muted">Owner: {shop.username}</p>
                                 <p className="card-text">Physical Address: {shop.address}</p>

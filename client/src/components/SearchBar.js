@@ -51,7 +51,7 @@ function SearchBar({ shops }) {
             <div className="card">
               <div className="card-body">
                 <h5 className="card-title">
-                  <Link to={`https://online-market-28d0.onrender.com/shops/${shop.id}`} className="text-decoration-none">{shop.shopname}</Link>
+                  <Link to={`/shops/${shop.id}`} className="text-decoration-none">{shop.shopname}</Link>
                 </h5>
                 <p className="card-text">Owner: {shop.username}</p>
                 <p className="card-text">Address: {shop.address}</p>
