@@ -1,9 +1,14 @@
 from flask import jsonify, make_response, request, session, url_for
-
 from models import User, Shop, Product, Shopproduct
 
 
-from config import app, db
+from config import app,db
+
+
+
+# db.init_app(app)
+
+
 
 
 
@@ -301,7 +306,7 @@ def delete_product(product_id):
     db.session.commit()
     return jsonify ({"message":"product deleted  well"}),200
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True,port=5555)
 
 
 
