@@ -43,6 +43,11 @@ This is a simple online market application that allows users to create shops, vi
     - npm install
     - npm start
 
+## Links
+1. Frontend: https://inclusive-online-market.netlify.app/
+2. Backend: postgresql://database_mojm_user:QB2eWJbuTRYlg1fto2BDFly6iy1JdUJK@dpg-cn68pr6d3nmc739h6lh0-a.oregon-postgres.render.com/database_mojm
+3. Github project: https://github.com/maurineA/online-market
+
 ## Usage
 
 1. Open your web browser and navigate to `http://localhost:4000`.
