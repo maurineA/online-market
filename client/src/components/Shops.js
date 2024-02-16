@@ -6,7 +6,7 @@ function Shops() {
     const [shops, setShops] = useState([]);
 
     useEffect(() => {
-        fetch('https://online-shops.onrender.com/shops')
+        fetch('https://soko-pdf0.onrender.com/shops')
             .then((response) => response.json())
             .then(data => setShops(data))
             .catch(error => console.error('Error fetching shops:', error));

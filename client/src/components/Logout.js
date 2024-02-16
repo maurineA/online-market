@@ -6,7 +6,7 @@ function Logout() {
   const navigate = useNavigate();
 
   function handleLogout() {
-    fetch('https://online-shops.onrender.com/logout', {
+    fetch('https://soko-pdf0.onrender.com/logout', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

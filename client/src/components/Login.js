@@ -20,7 +20,7 @@ function Login({updateUserRole}) {
     e.preventDefault();
 
     // Send login data to backend
-    fetch('https://online-shops.onrender.com/login', {
+    fetch('https://soko-pdf0.onrender.com/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
