@@ -23,7 +23,7 @@ function Signup({ updateUserRole }) { // Destructure updateUserRole from props
     e.preventDefault();
 
     // Send signup data to backend
-    fetch('https://online-market-28d0.onrender.com/signup', {
+    fetch('https://online-shops.onrender.com/signup', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

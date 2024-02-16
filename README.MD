@@ -45,12 +45,12 @@ This is a simple online market application that allows users to create shops, vi
 
 ## Links
 1. Frontend: https://inclusive-online-market.netlify.app/
-2. Backend: postgresql://database_mojm_user:QB2eWJbuTRYlg1fto2BDFly6iy1JdUJK@dpg-cn68pr6d3nmc739h6lh0-a.oregon-postgres.render.com/database_mojm
+2. Backend: https://online-shops.onrender.com/
 3. Github project: https://github.com/maurineA/online-market
 
 ## Usage
 
-1. Open your web browser and navigate to `http://localhost:4000`.
+1. Open your web browser and navigate to ` https://inclusive-online-market.netlify.app/`.
 2. Sign up for a new account or log in if you already have one.
 3. Create your own shop or explore shops created by others.
 4. create  a new  shop  and add products  for others to view  product  in it
