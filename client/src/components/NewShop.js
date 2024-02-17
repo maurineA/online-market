@@ -18,7 +18,7 @@ function NewShop({ updateUserRole, setShopId }) {
       contact: contact
     };
 
-    fetch("https://soko-pdf0.onrender.com/addshop", {
+    fetch("https://soko-75ui.onrender.com/addshop", {
       method: "POST",
       headers: {
         'Content-Type': 'application/json'

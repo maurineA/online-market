@@ -6,7 +6,7 @@ function ShopProducts() {
     const { shopId } = useParams();
 
     useEffect(() => {
-        fetch(`https://soko-pdf0.onrender.com/products?shopId=${shopId}`)
+        fetch(`https://soko-75ui.onrender.com/products?shopId=${shopId}`)
             .then(response => response.json())
             .then(data => setProducts(data))
             .catch(error => console.error('Error fetching products:', error));
