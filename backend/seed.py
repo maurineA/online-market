@@ -1,5 +1,5 @@
-from .models import db, Shop, Product, Shopproduct
-from .config import app
+from models import db, Shop, Product, Shopproduct
+from config import app
 
 def seed_data():
     with app.app_context():
