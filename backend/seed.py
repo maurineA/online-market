@@ -8,16 +8,16 @@ def seed_data():
         Product.query.delete()
         Shopproduct.query.delete()
         # Create shops
-        shop1 = Shop(username='John Dai', shopname='Ever Green', address='123 Main St, Nairobi, Kenya', contact='+254-123-456-789')
-        shop2 = Shop(username='Alice Kamau', shopname='Afro Chic Boutique', address='456 Moi Avenue, Mombasa, Kenya', contact='+254-098-765-432')
-        shop3 = Shop(username='Peter Maina', shopname='Safari Crafts', address='789 Kenyatta Avenue, Nakuru, Kenya', contact='+254-876-543-210')
-        shop4 = Shop(username='Grace Wanjiku', shopname='Kilimanjaro Fashion House', address='101 Tom Mboya Street, Kisumu, Kenya', contact='+254-555-123-456')
-        shop5 = Shop(username='James Mwangi', shopname='Serengeti Jewelry', address='678 Biashara Street, Eldoret, Kenya', contact='+254-334-445-678')
-        shop6 = Shop(username='Fatma Ahmed', shopname='Zanzibar Treasures', address='246 Lamu Road, Malindi, Kenya', contact='+254-445-556-789')
-        shop7 = Shop(username='Charles Omondi', shopname='Maasai Mara Crafts', address='135 Naivasha Road, Naivasha, Kenya', contact='+254-777-888-999-')
-        shop8 = Shop(username='Esther Njeri', shopname='Kiswahili Delights', address='864 Diani Beach Road, Diani, Kenya', contact='+254-669-998-888')
-        shop9 = Shop(username='Stephen Kariuki', shopname='Nairobi Gems', address='753 Langata Road, Nairobi, Kenya', contact='+254-112-223-333')
-        shop10 = Shop(username='Lucy Wangari', shopname='Kikoy Paradise', address='369 Lamu Street, Lamu, Kenya', contact='+254-445-556-666')
+        shop1 = Shop(username='John Dai', shopname='Ever Green', address='123 Main St, Nairobi, Kenya', contact=123456789)
+        shop2 = Shop(username='Alice Kamau', shopname='Afro Chic Boutique', address='456 Moi Avenue, Mombasa, Kenya', contact=798765432)
+        shop3 = Shop(username='Peter Maina', shopname='Safari Crafts', address='789 Kenyatta Avenue, Nakuru, Kenya', contact=876543210)
+        shop4 = Shop(username='Grace Wanjiku', shopname='Kilimanjaro Fashion House', address='101 Tom Mboya Street, Kisumu, Kenya', contact=55123456)
+        shop5 = Shop(username='James Mwangi', shopname='Serengeti Jewelry', address='678 Biashara Street, Eldoret, Kenya', contact=334445678)
+        shop6 = Shop(username='Fatma Ahmed', shopname='Zanzibar Treasures', address='246 Lamu Road, Malindi, Kenya', contact=445556789)
+        shop7 = Shop(username='Charles Omondi', shopname='Maasai Mara Crafts', address='135 Naivasha Road, Naivasha, Kenya', contact=777888999)
+        shop8 = Shop(username='Esther Njeri', shopname='Kiswahili Delights', address='864 Diani Beach Road, Diani, Kenya', contact=669998888)
+        shop9 = Shop(username='Stephen Kariuki', shopname='Nairobi Gems', address='753 Langata Road, Nairobi, Kenya', contact=112223333)
+        shop10 = Shop(username='Lucy Wangari', shopname='Kikoy Paradise', address='369 Lamu Street, Lamu, Kenya', contact=445556666)
 
         
         # Create products
