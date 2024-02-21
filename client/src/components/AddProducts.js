@@ -23,7 +23,7 @@ function AddProducts({ shopId }) {
         e.preventDefault();
 
         try {
-            const response = await fetch("https://soko-75ui.onrender.com/products?shopId=1/add-product", {
+            const response = await fetch("https://online-market-zts2.onrender.com/products?shopId=1/add-product", {
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json"

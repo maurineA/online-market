@@ -20,7 +20,7 @@ function Login({updateUserRole}) {
     e.preventDefault();
 
     // Send login data to backend
-    fetch('https://soko-75ui.onrender.com/login', {
+    fetch('https://online-market-zts2.onrender.com/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

@@ -193,7 +193,7 @@ def get_product(id):
 @app.route("/addshop", methods=["POST"])
 def post_shop():
     
-    if  "user_id" not in session:
+    if session.get("user_id") is None:
         return jsonify({"error":"user not logged in"}),400
     data = request.json
     username = data.get("username")
@@ -230,8 +230,9 @@ def post_shop():
         "contact":new_shop.contact,
     }
 
-    response = make_response(jsonify(shop_data),200) 
+    response = make_response(jsonify(shop_data),201) 
     return response
+
 @app.route("/add-product", methods=["POST"])
 def addProduct():
     if "user_id" not in session:

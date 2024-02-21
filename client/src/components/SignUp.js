@@ -23,7 +23,7 @@ function Signup({ updateUserRole }) { // Destructure updateUserRole from props
     e.preventDefault();
 
     // Send signup data to backend
-    fetch('https://soko-75ui.onrender.com/signup', {
+    fetch('https://online-market-zts2.onrender.com/signup', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
