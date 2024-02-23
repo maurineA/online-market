@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function NewShop({ updateUserRole, setShopId }) {
-  const [name, setName] = useState('');
+function NewShop({setShopId }) {
+  const [username, setName] = useState('');
   const [address, setAddress] = useState('');
   const [shopName, setShopName] = useState('');
   const [contact, setContact] = useState('');
@@ -12,7 +12,7 @@ function NewShop({ updateUserRole, setShopId }) {
   function handleSubmit(e) {
     e.preventDefault();
     const newShop = {
-      username: name,
+      username: username,
       address: address,
       shopname: shopName,
       contact: contact
@@ -34,7 +34,6 @@ function NewShop({ updateUserRole, setShopId }) {
       })
       .then(data => {
         alert("Shop created successfully");
-        updateUserRole(true);
         setShopId(data.id);
         navigate(`/shops`);
       })
@@ -56,7 +55,7 @@ function NewShop({ updateUserRole, setShopId }) {
             </div>
             <div className="mb-3">
               <label htmlFor="ownerName" className="form-label">Owner Name</label>
-              <input type="text" className="form-control" id="ownerName" placeholder="Enter Owner Name" value={name} onChange={(e) => setName(e.target.value)} required />
+              <input type="text" className="form-control" id="ownerName" placeholder="Enter Owner Name" value={username} onChange={(e) => setName(e.target.value)} required />
             </div>
             <div className="mb-3">
               <label htmlFor="address" className="form-label">Address</label>

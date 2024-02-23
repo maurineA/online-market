@@ -1,7 +1,7 @@
 from flask import jsonify, make_response, request, session, url_for
-from .models import User, Shop, Product, Shopproduct
+from models import User, Shop, Product, Shopproduct
 
-from .config import app,db
+from config import app,db
 
 
 
@@ -202,7 +202,7 @@ def post_shop():
     if session.get("user_id") is None:
         return jsonify({"error":"user not logged in"}),400
     data = request.json
-    username = data.get("username")
+    username = session.get("username")
     shopname = data.get("shopname")
     address = data. get("address")
     contact = data.get("contact")

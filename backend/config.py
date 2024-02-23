@@ -17,7 +17,7 @@ migrate = Migrate(app, db)
 db.init_app(app)
 
 bcrypt = Bcrypt(app)
-CORS(app)
+CORS(app, resources={r"/*": {"origins": "https://inclusive-online-market.netlify.app", "methods": ["GET", "POST", "DELETE"], "allow_headers": ["Content-Type"]}})
 # =======
 # bcrypt = Bcrypt(app) 
 
