@@ -1,7 +1,7 @@
 
 from sqlalchemy.orm import validates
 from sqlalchemy.ext.hybrid import hybrid_property
-from .config import bcrypt,db
+from config import bcrypt,db
 
 class User(db.Model):
     __tablename__ = "users"
