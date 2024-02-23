@@ -145,7 +145,6 @@ def get_shop(id):
         }
         response = make_response(jsonify(shop_dict), 200)
 
-        return response
     else:
         response = {"error": "id not found"}
         return jsonify(response), 404
