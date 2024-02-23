@@ -107,8 +107,13 @@ def get_current_user():
     else:
         return jsonify({"error": "user not logged in"}), 401
 
+
 @app.route("/shops", methods=["GET"])
 def get_shops():
+    # Check if user is logged in
+    if 'user_id' not in session:
+        return jsonify({"error": "user not logged in"}), 401
+
     shops = Shop.query.all()
     shoplist=[]
     for shop in shops:
@@ -124,6 +129,7 @@ def get_shops():
     response = make_response(jsonify(shoplist), 200)
 
     return response
+
 
 @app.route("/shop/<int:id>", methods=["GET"])
 def get_shop(id):
