@@ -197,31 +197,29 @@ def get_product(id):
 
 @app.route("/addshop", methods=["POST"])
 def post_shop():
-    
-    if session.get("user_id") is None:
+    # Check if user is logged in
+    if 'user_id' not in session:
         return jsonify({"error":"user not logged in"}),400
+    
     data = request.json
-    username = session.get("username")
+    username = data.get("username")
     shopname = data.get("shopname")
     address = data. get("address")
     contact = data.get("contact")
     
-    
-    existing_shop = Shop.query.filter_by(username=session['username']).first()                                   
-         
-    
+    # Check if the user already has a shop
+    existing_shop = Shop.query.filter_by(username=session['username']).first()
     if existing_shop:
         return jsonify({"error":"User already has a shop."}),400
 
-
     if not all([username, shopname, address, contact]):
         return jsonify({"error": "missing parameter"}),400
+    
     new_shop = Shop(
         username = username,
         shopname = shopname,
         address = address,
         contact = contact
-
     )
 
     db.session.add(new_shop)
@@ -237,6 +235,7 @@ def post_shop():
 
     response = make_response(jsonify(shop_data),201) 
     return response
+
 
 @app.route("/add-product", methods=["POST"])
 def addProduct():
