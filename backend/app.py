@@ -194,7 +194,7 @@ def get_product(id):
 def post_shop():
     
     data = request.json
-    username = session.get("username")
+    username = data.get("username")
     shopname = data.get("shopname")
     address = data. get("address")
     contact = data.get("contact")
