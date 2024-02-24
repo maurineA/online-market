@@ -1,8 +1,7 @@
-// Signup.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
 
-function Signup({ updateUserRole }) { // Destructure updateUserRole from props
+function Signup({ updateUserRole }) { 
   const navigate = useNavigate();
   const [input, setInput] = useState({
     fullname: '',
