@@ -193,8 +193,6 @@ def get_product(id):
 @app.route("/addshop", methods=["POST"])
 def post_shop():
     
-    if session.get("user_id") is None:
-        return jsonify({"error":"user not logged in"}),400
     data = request.json
     username = session.get("username")
     shopname = data.get("shopname")
