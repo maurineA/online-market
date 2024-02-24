@@ -20,6 +20,7 @@ function NewShop({setShopId }) {
 
     fetch("https://online-market-zts2.onrender.com/addshop", {
       method: "POST",
+      
       headers: {
         'Content-Type': 'application/json'
       },
