@@ -20,7 +20,7 @@ function Login({updateUserRole}) {
     e.preventDefault();
 
     // Send login data to backend
-    fetch('https://online-market-zts2.onrender.com/login', {
+    fetch('https://online-marketing.onrender.com/login', {
       method: 'POST',
       credentials: 'include',
       headers: {

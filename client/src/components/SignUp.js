@@ -22,7 +22,7 @@ function Signup({ updateUserRole }) {
     e.preventDefault();
 
     // Send signup data to backend
-    fetch('https://online-market-zts2.onrender.com/signup', {
+    fetch('https://online-marketing.onrender.com/signup', {
       method: 'POST',
       credentials:"include",
       headers: {
