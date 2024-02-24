@@ -1,39 +1,41 @@
 import React from 'react';
-import 'bootstrap-icons/font/bootstrap-icons.css';
+import { useNavigate } from 'react-router-dom';
 
+function Home() {
+  const navigate = useNavigate();
 
+  function handleSignUp() {
+    navigate("/signup");
+  }
 
-function Footer() {
+  function handleLogin() {
+    navigate("/login");
+  }
+
   return (
-    
-    <div  style={{padding:"0px"}}>
-    <footer className="bg-dark text-light py-4">
-      <div className="container">
-        <div className="row">
-          <div className="col-md-6">
-            <h5>About Us</h5>
-            <p>Online market to improve on trade in the world</p>
-          </div>
-          <div className="col-md-6">
-            <h5>Contact Us</h5>
-            <address>
-              123 Main Street <br />
-              City, State, Zip <br />
-              Country:Kenya <br />
-              <i className="bi bi-envelope"></i> example@example.com <br />
-              <i className="bi bi-phone"></i> +2544567890
-            </address>
-          </div>
+    <div className="container-fluid">
+      <div className="row">
+        <div className="col-md-6 p-0">
+          <img
+            src="https://images.pexels.com/photos/2622170/pexels-photo-2622170.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+            alt="Online Market"
+            className="img-fluid rounded"
+          />
         </div>
-        <div className="row mt-3">
-          <div className="col-md-12 text-center">
-            <p>&copy; 2024 Your Company. All rights reserved.</p>
+        <div className="col-md-6 d-flex align-items-center bg-light">
+          <div className="p-5">
+            <h1 className="display-4 mb-4 text-primary">Welcome to the Online Market</h1>
+            <p className="lead mb-4">Discover the convenience of shopping online and explore a variety of shops from the comfort of your home.</p>
+            <p className="mb-4">If you're a shop owner, join our marketplace and reach a wider audience by creating your own shop!</p>
+            <div className="d-flex flex-column">
+              <button onClick={handleLogin} className="btn btn-primary btn-lg mb-3">Login</button>
+              <p className="text-center">Don't have an account? <button onClick={handleSignUp} className="btn btn-link btn-sm">Sign Up</button></p>
+            </div>
           </div>
         </div>
       </div>
-    </footer>
-  </div>
+    </div>
   );
 }
 
-export default Footer;
+export default Home;

@@ -307,7 +307,3 @@ def delete_product(product_id):
     return jsonify ({"message":"product deleted  well"}),200
 if __name__ == "__main__":
     app.run(debug=True)
-
-
-
-
