@@ -6,7 +6,7 @@ function ShopProducts() {
     const { shopId } = useParams();
 
     useEffect(() => {
-        fetch(`https://online-market-zts2.onrender.com/products?shopId=${shopId}`)
+        fetch(`https://online-marketing.onrender.com/products?shopId=${shopId}`)
             .then(response => response.json())
             .then(data => setProducts(data))
             .catch(error => console.error('Error fetching products:', error));

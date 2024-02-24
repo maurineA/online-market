@@ -17,7 +17,7 @@ migrate = Migrate(app, db)
 db.init_app(app)
 
 bcrypt = Bcrypt(app)
-CORS(app, resources={r"/*": {"origins": ["https://inclusive-online-market.netlify.app/"]}},supports_credentials=True)
+CORS(app,supports_credentials=True)
 # postgres://flower_market_user:ZVlMPM4NbKVdnk4n1dbAMRTQoK6IRnDj@dpg-cncuk0ev3ddc73c94420-a.oregon-postgres.render.com/flower_market
 # =======
 # bcrypt = Bcrypt(app) 

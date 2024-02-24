@@ -18,7 +18,7 @@ function NewShop({setShopId }) {
       contact: contact
     };
 
-    fetch("https://online-market-zts2.onrender.com/addshop", {
+    fetch("https://online-marketing.onrender.com/addshop", {
       method: "POST",
       credentials: "include",
       headers: {
