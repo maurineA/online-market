@@ -1,46 +1,41 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function NewShop({setShopId }) {
-  const [username, setName] = useState('');
+function NewShop({ setShopId }) {
+  const [username, setUsername] = useState('');
   const [address, setAddress] = useState('');
   const [shopName, setShopName] = useState('');
   const [contact, setContact] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-    const newShop = {
-      username: username,
-      address: address,
-      shopname: shopName,
-      contact: contact
-    };
-
-    fetch("https://online-marketing.onrender.com/addshop", {
-      method: "POST",
-      credentials: "include",
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(newShop)
-    })
-      .then(r => {
-        if (!r.ok) {
-          // alert("Ensure you are logged in to the market")
-          throw new Error("Failed to add shop");
-        }
-        return r.json();
-      })
-      .then(data => {
-        alert("Shop created successfully");
-        setShopId(data.id);
-        navigate(`/shops`);
-      })
-      .catch(error => {
-        setError(error.message);
+    try {
+      const response = await fetch("https://online-marketing.onrender.com/addshop", {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          username,
+          address,
+          shopname: shopName,
+          contact
+        })
       });
+
+      if (!response.ok) {
+        throw new Error('Failed to add shop');
+      }
+
+      const data = await response.json();
+      setShopId(data.id);
+      navigate(`/shops`);
+    } catch (error) {
+      setError(error.message);
+    }
   }
 
   return (
@@ -56,7 +51,7 @@ function NewShop({setShopId }) {
             </div>
             <div className="mb-3">
               <label htmlFor="ownerName" className="form-label">Owner Name</label>
-              <input type="text" className="form-control" id="ownerName" placeholder="Enter Owner Name" value={username} onChange={(e) => setName(e.target.value)} required />
+              <input type="text" className="form-control" id="ownerName" placeholder="Enter Owner Name" value={username} onChange={(e) => setUsername(e.target.value)} required />
             </div>
             <div className="mb-3">
               <label htmlFor="address" className="form-label">Address</label>
