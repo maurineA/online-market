@@ -1,5 +1,5 @@
 from flask import jsonify, make_response, request, session, url_for
-from models import User, Shop, Product, Shopproduct
+from  models import User, Shop, Product, Shopproduct
 
 from config import app,db
 
