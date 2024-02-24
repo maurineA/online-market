@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
 
-function Login({updateUserRole}) {
+function Signup({ updateUserRole }) { 
   const navigate = useNavigate();
   const [input, setInput] = useState({
+    fullname: '',
+    email: '',
     username: '',
     password: ''
   });
@@ -19,10 +21,10 @@ function Login({updateUserRole}) {
   function handleSubmit(e) {
     e.preventDefault();
 
-    // Send login data to backend
-    fetch('https://online-market-zts2.onrender.com/login', {
+    // Send signup data to backend
+    fetch('https://online-market-zts2.onrender.com/signup', {
       method: 'POST',
-      credentials: 'include',
+      credentials:"include",
       headers: {
         'Content-Type': 'application/json',
       },
@@ -32,17 +34,17 @@ function Login({updateUserRole}) {
       if (response.ok) {
         return response.json();
       }
-      throw new Error('Login failed');
+      throw new Error('Signup failed');
     })
     .then(data => {
-      // If login successful, navigate to the home page
-      alert(`Welcome, ${input.username}`);
-      navigate('/shops');
-      updateUserRole(true);
+      // If signup successful, navigate to the home page
+      alert(`Thanks ${input.fullname} for joining us`);
+      updateUserRole(data.isShopOwner);                   
+      navigate('/login');
     })
     .catch(error => {
-      alert('User not found');
-      console.error('Error logging in:', error);
+      alert('Signup failed');
+      console.error('Error signing up:', error);
     });
   }
 
@@ -50,8 +52,34 @@ function Login({updateUserRole}) {
     <div className="container d-flex flex-column min-vh-100">
       <div className="row justify-content-center align-items-center flex-grow-1">
         <div className="col-md-6">
-          <form onSubmit={handleSubmit} className="login-form p-4 shadow rounded">
-            <h2 className="mb-4 text-center">Login</h2>
+          <form onSubmit={handleSubmit} className="signup-form p-4 shadow rounded">
+            <h2 className="mb-4 text-center">Sign Up</h2>
+            <div className="mb-3">
+              <label htmlFor="fullname" className="form-label">Full Name</label>
+              <input
+                type="text"
+                id="fullname"
+                name="fullname"
+                className="form-control form-control-lg"
+                placeholder="Enter your full name"
+                value={input.fullname}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="email" className="form-label">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                className="form-control form-control-lg"
+                placeholder="Input your email"
+                value={input.email}
+                onChange={handleChange}
+                required
+              />
+            </div>
             <div className="mb-3">
               <label htmlFor="username" className="form-label">Username</label>
               <input
@@ -59,7 +87,7 @@ function Login({updateUserRole}) {
                 id="username"
                 name="username"
                 className="form-control form-control-lg"
-                placeholder="Enter your username"
+                placeholder="Enter a username"
                 value={input.username}
                 onChange={handleChange}
                 required
@@ -72,14 +100,14 @@ function Login({updateUserRole}) {
                 id="password"
                 name="password"
                 className="form-control form-control-lg"
-                placeholder="Enter your password"
+                placeholder="Enter a password"
                 value={input.password}
                 onChange={handleChange}
                 required
               />
             </div>
             <div className="text-center">
-              <button type="submit" className="btn btn-primary btn-lg">Login</button>
+              <button type="submit" className="btn btn-primary btn-lg">Sign Up</button>
             </div>
           </form>
         </div>
@@ -88,4 +116,4 @@ function Login({updateUserRole}) {
   );
 }
 
-export default Login;
+export default Signup;

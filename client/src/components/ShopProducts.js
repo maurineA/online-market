@@ -6,13 +6,14 @@ function ShopProducts() {
     const { shopId } = useParams();
 
     useEffect(() => {
-        fetch(`/products?shopId=${shopId}`)
+        fetch(`https://online-market-zts2.onrender.com/products?shopId=${shopId}`)
             .then(response => response.json())
             .then(data => setProducts(data))
             .catch(error => console.error('Error fetching products:', error));
     }, [shopId]); 
-
+console.log(products);
     return (
+        <>
         <div className="container mt-4" style={{padding:"50px"}}>
             <h1 className="text-center mb-4">Shop Products</h1>
             <div className="row">
@@ -33,6 +34,7 @@ function ShopProducts() {
                 ))}
             </div>
         </div>
+        </>
     );
 }
 

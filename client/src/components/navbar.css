@@ -39,4 +39,30 @@ nav ul li a {
 nav ul li a:not(.active):hover {
     background-color: #6c7ae0;
 }
+nav.menu{
+    display: none;
+    position: absolute;
+    top: 8px;
+    right: 20px;
+    flex-direction: column;
+    justify-content: space-between;
+    width: auto;
+    height: auto;
 
+}
+nav.menu span{
+    display: block;
+    height: 4px;
+    width: 3px;
+    background-color:green;
+    border-radius: 3px;
+    margin-bottom: 5px;
+
+}
+
+@media(max-width:768){
+    nav.menu{
+        display: block;
+        cursor: pointer;
+    }
+}

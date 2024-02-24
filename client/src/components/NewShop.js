@@ -1,23 +1,26 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function NewShop() {
-  const [name, setName] = useState('');
+function NewShop({setShopId }) {
+  const [username, setName] = useState('');
   const [address, setAddress] = useState('');
   const [shopName, setShopName] = useState('');
   const [contact, setContact] = useState('');
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
   function handleSubmit(e) {
     e.preventDefault();
     const newShop = {
-      username: name,
+      username: username,
       address: address,
       shopname: shopName,
       contact: contact
     };
-    fetch("/addshop", {
+
+    fetch("https://online-market-zts2.onrender.com/addshop", {
       method: "POST",
+      credentials: "include",
       headers: {
         'Content-Type': 'application/json'
       },
@@ -25,31 +28,35 @@ function NewShop() {
     })
       .then(r => {
         if (!r.ok) {
+          // alert("Ensure you are logged in to the market")
           throw new Error("Failed to add shop");
         }
         return r.json();
       })
       .then(data => {
         alert("Shop created successfully");
-        navigate(`/shop/${data.shopId}/add-products`);
+        setShopId(data.id);
+        navigate(`/shops`);
+      })
+      .catch(error => {
+        setError(error.message);
       });
   }
-function handlebtn(){
-  navigate('/add-products/:shopId')
-}
+
   return (
-    <div className="container mt-4" style={{padding:"50px"}}>
+    <div className="container mt-4" style={{ padding: "50px" }}>
       <div className="row justify-content-center">
         <div className="col-md-6">
           <form onSubmit={handleSubmit} style={{ border: '1px solid #ccc', borderRadius: '5px', padding: '20px' }}>
             <h2 className="text-center mb-4">Add a New Shop</h2>
+            {error && <div className='alert alert-danger'>{error}</div>}
             <div className="mb-3">
               <label htmlFor="shopName" className="form-label">Shop Name</label>
               <input type="text" className="form-control" id="shopName" placeholder="Enter Shop Name" value={shopName} onChange={(e) => setShopName(e.target.value)} required />
             </div>
             <div className="mb-3">
               <label htmlFor="ownerName" className="form-label">Owner Name</label>
-              <input type="text" className="form-control" id="ownerName" placeholder="Enter Owner Name" value={name} onChange={(e) => setName(e.target.value)} required />
+              <input type="text" className="form-control" id="ownerName" placeholder="Enter Owner Name" value={username} onChange={(e) => setName(e.target.value)} required />
             </div>
             <div className="mb-3">
               <label htmlFor="address" className="form-label">Address</label>
@@ -65,7 +72,6 @@ function handlebtn(){
           </form>
         </div>
       </div>
-      <button onClick={handlebtn}>click me</button>    
     </div>
   );
 }
