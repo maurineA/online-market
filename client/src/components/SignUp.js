@@ -24,6 +24,7 @@ function Signup({ updateUserRole }) {
     // Send signup data to backend
     fetch('https://online-market-zts2.onrender.com/signup', {
       method: 'POST',
+      credentials:"include",
       headers: {
         'Content-Type': 'application/json',
       },

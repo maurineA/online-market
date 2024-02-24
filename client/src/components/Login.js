@@ -22,6 +22,7 @@ function Login({updateUserRole}) {
     // Send login data to backend
     fetch('https://online-market-zts2.onrender.com/login', {
       method: 'POST',
+      credentials: 'include',
       headers: {
         'Content-Type': 'application/json',
       },

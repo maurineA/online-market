@@ -8,6 +8,8 @@ function Logout() {
   function handleLogout() {
     fetch('https://online-market-zts2.onrender.com/logout', {
       method: 'GET',
+      credentials:"include",
+      
       headers: {
         'Content-Type': 'application/json',
       },
