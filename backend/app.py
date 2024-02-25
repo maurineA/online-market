@@ -200,11 +200,11 @@ def post_shop():
     contact = data.get("contact")
     
     
-    existing_shop = Shop.query.filter_by(username=session['username']).first()                                   
+    # existing_shop = Shop.query.filter_by(username=session['username']).first()                                   
          
     
-    if existing_shop:
-        return jsonify({"error":"User already has a shop."}),400
+    # if existing_shop:
+        # return jsonify({"error":"User already has a shop."}),400
 
 
     if not all([username, shopname, address, contact]):
