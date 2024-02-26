@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function AddProducts({ shopId }) {
-    const navigate = useNavigate()
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         name: '',
         description: '',
@@ -10,6 +10,14 @@ function AddProducts({ shopId }) {
         price: '',
         image: '',
     });
+    const [error, setError] = useState('');
+
+    useEffect(() => {
+        // Check if shopId is available, if not, redirect to create a new shop
+        if (!shopId) {
+            navigate("/newShop");
+        }
+    }, [shopId, navigate]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -23,7 +31,7 @@ function AddProducts({ shopId }) {
         e.preventDefault();
 
         try {
-            const response = await fetch("https://online-marketing.onrender.com/products?shopId=1/add-product", {
+            const response = await fetch(`https://online-marketing.onrender.com/products?shopId=${shopId}/add-product`, {
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json"
@@ -42,21 +50,21 @@ function AddProducts({ shopId }) {
                     quantity: '',
                     price: '',
                     image: '',
-                    shopId: ''
                 });
             } else {
                 console.error("Failed to create product");
-                navigate("/newShop")
-                alert("Please create  a shop first");
+                setError("Failed to create product");
             }
         } catch (error) {
             console.error("Error:", error);
+            setError("Failed to create product");
         }
     };
 
     return (
-        <div className="container mt-5" style={{padding:"50px"}}>
+        <div className="container mt-5" style={{ padding: "50px" }}>
             <h2>Add Product</h2>
+            {error && <div className='alert alert-danger'>{error}</div>}
             <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                     <label htmlFor="name" className="form-label">Name:</label>
