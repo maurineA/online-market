@@ -1,7 +1,7 @@
 from flask import jsonify, make_response, request, session, url_for
-from .models import User, Shop, Product, Shopproduct
+from models import User, Shop, Product, Shopproduct
 
-from .config import app,db
+from config import app,db
 
 
 
@@ -202,11 +202,11 @@ def post_shop():
 
     
     
-    # existing_shop = Shop.query.filter_by(username=session['username']).first()                                   
+    existing_shop = Shop.query.filter_by(username=session['username']).first()                                   
          
     
-    # if existing_shop:
-        # return jsonify({"error":"User already has a shop."}),400
+    if existing_shop:
+        return jsonify({"error":"User already has a shop."}),400
 
 
     if not all([username, shopname, address, contact]):
