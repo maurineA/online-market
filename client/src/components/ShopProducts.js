@@ -10,16 +10,15 @@ function ShopProducts() {
             .then(response => response.json())
             .then(data => setProducts(data))
             .catch(error => console.error('Error fetching products:', error));
-    }, [shopId]); 
-console.log(products);
+    }, [shopId]);
+
     return (
-        <>
-        <div className="container mt-4" style={{padding:"50px"}}>
+        <div className="container mt-4"style={{padding:"50px"}}>
             <h1 className="text-center mb-4">Shop Products</h1>
-            <div className="row">
+            <div className="row row-cols-1 row-cols-md-3 g-4">
                 {products.map((product) => (
-                    <div key={product.id} className="col-md-4 mb-4">
-                        <div className="card h-100 bg-light">
+                    <div key={product.id} className="col">
+                        <div className="card h-100">
                             <img src={product.image} className="card-img-top" alt="Product" />
                             <div className="card-body">
                                 <h5 className="card-title">{product.name}</h5>
@@ -34,7 +33,6 @@ console.log(products);
                 ))}
             </div>
         </div>
-        </>
     );
 }
 
