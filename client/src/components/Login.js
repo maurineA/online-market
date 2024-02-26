@@ -35,6 +35,7 @@ function Login({updateUserRole}) {
       throw new Error('Login failed');
     })
     .then(data => {
+      console.log(data)
       // If login successful, navigate to the home page
       alert(`Welcome, ${input.username}`);
       navigate('/shops');
