@@ -1,7 +1,7 @@
 from flask import jsonify, make_response, request, session, url_for
-from  models import User, Shop, Product, Shopproduct
+from .models import User, Shop, Product, Shopproduct
 
-from config import app,db
+from .config import app,db
 
 
 
@@ -194,10 +194,12 @@ def get_product(id):
 def post_shop():
     
     data = request.json
-    username = data.get("username")
-    shopname = data.get("shopname")
-    address = data. get("address")
-    contact = data.get("contact")
+    user_id = data["user_id"]
+    username = data["username"]
+    shopname = data["shopname"]
+    address = data["address"]
+    contact = data["contact"]
+
     
     
     # existing_shop = Shop.query.filter_by(username=session['username']).first()                                   
@@ -210,6 +212,7 @@ def post_shop():
     if not all([username, shopname, address, contact]):
         return jsonify({"error": "missing parameter"}),400
     new_shop = Shop(
+        user_id = user_id,
         username = username,
         shopname = shopname,
         address = address,
@@ -222,6 +225,7 @@ def post_shop():
 
     shop_data = {
         "id": new_shop.id,
+        "user_id": new_shop.user_id,
         "username": new_shop.username,
         "shopname": new_shop.shopname,
         "address": new_shop.address,
@@ -303,5 +307,6 @@ def delete_product(product_id):
     db.session.delete(product)
     db.session.commit()
     return jsonify ({"message":"product deleted  well"}),200
+
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(port= 5001, debug=True)

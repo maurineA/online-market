@@ -1,7 +1,7 @@
 
 from sqlalchemy.orm import validates
 from sqlalchemy.ext.hybrid import hybrid_property
-from config import bcrypt,db
+from .config import bcrypt,db
 
 class User(db.Model):
     __tablename__ = "users"
@@ -36,7 +36,6 @@ class Shop(db.Model):
     shopname = db.Column(db.String)
     address = db.Column(db.String)
     contact = db.Column(db.Integer)
-    _password_hash = db.Column(db.String)
     Shopproduct = db.relationship("Shopproduct", backref="Shopproduct")
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
     @validates('username', 'shopname', 'address','contact')

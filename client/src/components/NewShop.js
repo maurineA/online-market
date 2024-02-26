@@ -9,6 +9,12 @@ function NewShop({ setShopId }) {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
+  // const shopData = {
+  //   username,
+  //         address,
+  //         shopname: shopName,
+  //         contact
+  // }
   async function handleSubmit(e) {
     e.preventDefault();
     try {
@@ -21,7 +27,7 @@ function NewShop({ setShopId }) {
         body: JSON.stringify({
           username,
           address,
-          shopname: shopName,
+          shopName,
           contact
         })
       });
