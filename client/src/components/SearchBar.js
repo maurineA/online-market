@@ -38,7 +38,7 @@ function SearchBar({ shops }) {
               onChange={handleChange}
             />
             <div className="input-group-append">
-              <button className="btn btn-primary" type="submit">
+              <button className="btn btn-primary" type="submit" style={{ marginLeft: '5px' }}>
                 Search
               </button>
             </div>
@@ -56,6 +56,7 @@ function SearchBar({ shops }) {
                 <p className="card-text">Owner: {shop.username}</p>
                 <p className="card-text">Address: {shop.address}</p>
                 <p className="card-text">Phone Number: {shop.contact}</p>
+                <Link to={`/shops/${shop.id}`} className="btn btn-primary">Visit Shop</Link>
               </div>
             </div>
           </div>
